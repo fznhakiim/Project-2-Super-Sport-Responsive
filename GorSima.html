@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOR Sigma</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <link rel="shortcut icon" type="x-icon" href="LOGO SUPER SPORT APP.png">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="Gor.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="SewaLogic.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.12.0/cdn.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #F8F9FC;
+            --main-color: #C00000;
+            --text-color: #212121;
+            --second-color: #9E0620;
+            --third-color: #F7B32D;
+        }
+
+        #mobile-menu {
+            position: fixed;
+            top: 4rem; /* Pastikan sejajar dengan navbar */
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body style="background-color: var(--bg-color); color: var(--text-color);">
+  <nav class="bg-white border-gray-200 dark:bg-gray-900 sticky top-0 z-50">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="Home.html" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="LOGO SUPER SPORT APP.png" class="h-8" alt="Flowbite Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-red-800">Super Sport App</span>
+        </a>
+
+ <!-- Login Button or Profile Icon -->
+ <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+    <button id="login-btn" type="button" onclick="window.location.href='Login.html';" 
+        class="text-white bg-red-800 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
+        Login
+    </button>
+    
+    <!-- Profile Icon (Hidden by Default) -->
+    <div id="profile-menu" class="hidden relative">
+        <button id="profile-icon" class="w-10 h-10 rounded-full bg-gray-300 overflow-hidden focus:outline-none">
+            <img id="profile-img" src="profile z.jpg" alt="Profile">
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 transition-all duration-300 opacity-0 scale-95">
+            <a href="Profile.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</a>
+            <a href="Dashboard.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dasbor</a>
+            <button id="logout-btn" class="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">Keluar</button>
+        </div>
+    </div>
+    
+    <button id="hamburger" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden">
+        <span class="sr-only">Open menu</span>
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
+</div>
+
+<div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+  <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+    <li>
+      <a href="Home.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
+    </li>
+    <li>
+      <a href="PageSewaLapangan.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sewa Lapangan</a>
+    </li>
+    <li>
+      <a href="PageBerita.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Blog</a>
+    </li>
+    <li>
+      <a href="About.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About Us</a>
+    </li>
+  </ul>
+</div> 
+</div>
+</nav>
+
+<!-- Mobile Menu -->
+<nav id="mobile-menu" class="absolute left-0 w-full bg-white shadow-md p-4 md:hidden">
+<a href="Home.html" class="block py-2 border-b">Home</a>
+<a href="PageSewaLapangan.html" class="block py-2 border-b">Sewa Lapangan</a>
+<a href="PageBerita.html" class="block py-2 border-b">Blog</a>
+<a href="About.html" class="block py-2 border-b">About</a>
+</div>
+</div>
+</nav>
+
+<!-- Dropdown menu -->
+<div id="dropdownMenu" class="hidden absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-64 dark:bg-gray-700">
+    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+        <li>
+            <a href="PageSewaLapangan.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sewa Lapangan</a>
+        </li>
+        <li>
+            <a href="PageBerita.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Blog</a>
+        </li>
+        <li>
+            <a href="ContactUs.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Contact Us</a>
+        </li>
+        <li>
+            <a href="About.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">About Us</a>
+        </li>
+    </ul>
+</div>
+</div>
+
+<body>
+ <!-- Sidebar -->
+<div id="sidebar" class="fixed top-0 right-0 w-80 h-full bg-white shadow-lg transform translate-x-full transition-transform duration-300 p-4 overflow-y-auto">
+  <div class="flex justify-between items-center border-b pb-2">
+    <h2 class="text-lg font-semibold">JADWAL DIPILIH</h2>
+    <button id="close-sidebar" class="text-xl">&times;</button>
+  </div>
+  <div id="selected-schedule-list" class="mt-4 space-y-2">
+    <!-- Jadwal yang dipilih akan muncul di sini -->
+  </div>
+  <button id="next-button" class="w-full bg-red-700 text-white py-2 rounded-lg mt-4">Selanjutnya</button>
+</div>
+
+
+<body class="flex flex-col min-h-screen">
+<div class="flex-grow">
+ <!-- GOR Image Gallery and Venue Details -->
+ <div class="grid grid-cols-1 md:grid-cols-3 gap-4 px-6"> <!-- Menambahkan padding kiri -->
+    <!-- Large Image -->
+    <div class="md:col-span-2">
+        <img src="lapangan ai 2.webp" alt="GOR Sigma" class="w-full h-auto rounded-lg object-cover" style="max-height: 650px; max-width: 100%;"> <!-- Memberikan batasan ukuran -->
+    </div>
+
+    <!-- Small Images -->
+    <div class="flex flex-col gap-4">
+        <img src="GOR2.jpg" alt="GOR Sigma 2" class="w-full h-auto rounded-lg">
+        <div class="relative">
+            <img src="GOR3.jpg" alt="GOR Sigma 3" class="w-full h-auto rounded-lg">
+            <div class="absolute bottom-2 right-2 bg-black bg-opacity-50 text-white text-sm px-2 py-1 rounded-lg cursor-pointer">Lihat semua foto</div>
+        </div>
+    </div>
+</div>
+
+<!-- Detail Venue -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 px-6"> <!-- Menambahkan padding kiri -->
+    <!-- Venue Description -->
+    <div class="md:col-span-2">
+        <h2 class="text-3xl font-bold">GOR Sigma</h2>
+        <p class="text-yellow-500 flex items-center mt-1">⭐ 4.9 • Kota Depok, Jawa Barat</p>
+        
+        <div class="mt-4">
+            <h3 class="font-semibold">Deskripsi</h3>
+            <p class="text-sm text-gray-600 text-justify leading-relaxed">GOR SIGMA merupakan lapangan badminton yang berdiri sejak 2006 dan berlokasi di Beji, Kota Depok. Salah satu GOR khusus Badminton pertama di Wilayah Depok Utara menjadikan GOR SIGMA pionir di Wilayah Beji. Tersedia 5 lapangan Badminton Indoor dengan material Premium Synthetic Rubber.</p>
+        </div>
+        
+        <div class="mt-4">
+            <h3 class="font-semibold">Aturan Venue</h3>
+            <ul class="text-sm text-gray-600 mt-1 space-y-1 list-disc pl-5">
+                <li>Dilarang merokok di dalam lapangan.</li>
+                <li>Dilarang meludah di area lapangan.</li>
+                <li>Disarankan menggunakan sepatu khusus Badminton.</li>
+                <li>Dilarang membuang sampah sembarangan.</li>
+            </ul>
+            <a href="#" class="text-red-600 font-semibold mt-2 inline-block">Baca Selengkapnya</a>
+        </div>
+    </div>
+    
+   <!-- Booking Details -->
+<div class="hidden md:block bg-white shadow-lg rounded-lg p-6 border">
+    <p class="text-gray-500 text-sm">Mulai dari</p>
+    <p class="text-2xl font-bold text-gray-900">Rp 35,000 <span class="text-sm text-gray-500">Per Sesi</span></p>
+
+    <button class="w-full bg-red-800 text-white py-3 rounded-lg mt-4 hover:bg-red-700 font-semibold">Cek Ketersediaan</button>
+
+    <div class="bg-white shadow-md rounded-lg p-4 mt-6 border">
+        <h3 class="text-lg font-semibold">Booking lewat aplikasi lebih banyak keuntungan!</h3>
+        <ul class="text-sm text-gray-600 mt-2 space-y-2">
+            <li class="flex items-center"><span class="mr-2">💳</span> Opsi pembayaran down payment (DP)*</li>
+            <li class="flex items-center"><span class="mr-2">📅</span> Reschedule jadwal booking**</li>
+            <li class="flex items-center"><span class="mr-2">🎟️</span> Lebih banyak promo & voucher</li>
+        </ul>
+    </div>
+</div>
+
+ <!-- Heading Pilih Lapangan -->
+ <div class="px-6 mt-6">
+    <h2 class="text-2xl font-bold text-gray-800">Pilih Lapangan</h2>
+</div>
+</div>
+</body>
+
+<!-- Container date picker -->
+<div class="w-full overflow-x-auto whitespace-nowrap scrollbar-hide px-4 py-4">
+    <div id="dateList" class="flex space-x-2"></div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const dateList = document.getElementById("dateList");
+    const dateInput = document.getElementById("datepicker");
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Pastikan waktu di-set ke 00:00
+
+    const formatDate = (date) => {
+        let d = date.getDate();
+        let m = date.getMonth() + 1;
+        let y = date.getFullYear();
+        return `${y}-${m.toString().padStart(2, "0")}-${d.toString().padStart(2, "0")}`;
+    };
+
+    for (let i = -2; i < 5; i++) { // 2 hari ke belakang, hari ini, dan 4 hari ke depan
+        let newDate = new Date();
+        newDate.setDate(today.getDate() + i);
+
+        let dayName = newDate.toLocaleDateString("id-ID", { weekday: "short" });
+        let dateNum = newDate.getDate();
+        let fullDate = formatDate(newDate);
+        let isPast = i < 0; // Cek apakah tanggal di masa lalu
+
+        let dateItem = document.createElement("button");
+        dateItem.className =
+            "flex flex-col items-center justify-center w-16 h-14 rounded-lg bg-white text-gray-900 shadow-md border transition duration-200 hover:bg-red-800 hover:text-white";
+        dateItem.dataset.date = fullDate;
+
+        if (isPast) {
+            dateItem.classList.add("opacity-50", "cursor-not-allowed"); // Disable date in the past
+        } else {
+            dateItem.addEventListener("click", function () {
+                document.querySelectorAll("#dateList button").forEach((btn) => {
+                    btn.classList.remove("bg-red-800", "text-white");
+                    btn.classList.add("bg-white", "text-gray-900");
+                });
+
+                this.classList.add("bg-red-800", "text-white");
+                dateInput.value = this.dataset.date;
+            });
+        }
+
+        dateItem.innerHTML = `
+            <span class="text-gray-400 text-xs">${dayName}</span>
+            <span class="text-lg font-bold">${dateNum}</span>
+        `;
+
+        dateList.appendChild(dateItem);
+    }
+
+    // Set hari ini sebagai default terpilih
+    let todayButton = document.querySelector("#dateList button:not(.opacity-50)");
+    if (todayButton) {
+        todayButton.classList.add("bg-red-800", "text-white");
+        dateInput.value = todayButton.dataset.date;
+    }
+});
+</script>
+
+<style>
+/* Menghilangkan scrollbar di mobile */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+</style>
+<body class="flex flex-col min-h-screen">
+    <div class="flex-grow">
+      <div class="container mx-auto px-4">
+        <div class="court-info flex flex-col md:flex-row gap-4 bg-white p-4 rounded-lg shadow-lg">
+          <div class="court-pic w-full md:w-1/2 flex justify-center">
+            <img src="GOR5.jpg" alt="Badminton Court" class="w-full max-w-[300px] h-auto rounded-lg">
+          </div>
+          
+          <div class="court-details w-full md:w-1/2 flex flex-col gap-2">
+            <div class="no-lapangan text-lg font-bold">Lapangan 1 ></div>
+            <div class="desc-lapangan text-gray-600">
+              Lapangan dengan kualitas yang terbuat dari Polyvinyl Chloride dengan net premium.
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <div class="complement flex items-center gap-2 bg-gray-200 px-3 py-1 rounded-lg">
+                <i class="ri-trophy-line text-blue-500"></i>
+                <div class="text">Badminton</div>
+              </div>
+              <div class="complement flex items-center gap-2 bg-gray-200 px-3 py-1 rounded-lg">
+                <i class="ri-map-pin-4-line text-green-500"></i>
+                <div class="text">Indoor</div>
+              </div>
+              <div class="complement flex items-center gap-2 bg-gray-200 px-3 py-1 rounded-lg">
+                <i class="ri-align-justify text-purple-500"></i>
+                <div class="text">Polyvinyl Chloride</div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Schedule -->
+        <div class="schedule-select mt-6 relative">
+          <button id="dropdown-btn"
+            class="w-full bg-red-700 text-white px-4 py-2 rounded-lg flex justify-between items-center transition-all duration-300">
+            Pilih Jadwal
+            <i class="ri-arrow-down-s-line"></i>
+          </button>
+
+          <div id="schedule-dropdown" class="hidden bg-white p-4 rounded-lg shadow-lg mt-2 w-full max-h-[300px] overflow-y-auto transition-all duration-300">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4" id="schedule-grid">
+    <!-- Jadwal akan di-generate di sini -->
+  </div>
+</div>        
+        </div>
+      <!-- Sidebar untuk jadwal terpilih -->
+<div id="selected-sidebar" class="hidden fixed right-1 bottom-1 md:top-20 md:right-8 bg-white p-4 rounded-lg shadow-lg w-full md:w-80 max-h-[50vh] overflow-y-auto">
+  <h2 class="text-lg font-bold">Jadwal Terpilih</h2>
+  <div id="selected-list" class="mt-2"></div>
+  <button id="next-btn" class="mt-4 w-full bg-red-700 text-white py-2 rounded-lg hidden">Selanjutnya</button>
+</div>
+  
+    <script>
+const jadwalLapangan = [
+  { id: "1-jad1", waktu: "06.00 - 07.00", harga: 55000, status: "Booked" },
+  { id: "1-jad3", waktu: "08.00 - 09.00", harga: 60000, status: "Available" },
+  { id: "1-jad5", waktu: "10.00 - 11.00", harga: 60000, status: "Available" },
+  { id: "1-jad7", waktu: "12.00 - 13.00", harga: 60000, status: "Available" },
+  { id: "1-jad9", waktu: "14.00 - 15.00", harga: 60000, status: "Available" },
+  { id: "1-jad11", waktu: "16.00 - 17.00", harga: 60000, status: "Available" },
+  { id: "1-jad13", waktu: "18.00 - 19.00", harga: 60000, status: "Available" },
+  { id: "1-jad15", waktu: "20.00 - 21.00", harga: 60000, status: "Available" }
+];
+
+let selectedSchedules = [];
+
+function generateSchedule() {
+  const container = document.getElementById("schedule-grid");
+  container.innerHTML = "";
+  
+  jadwalLapangan.forEach((jadwal) => {
+    const formElement = document.createElement("div");
+    formElement.classList.add(
+      "p-4", "border", "rounded-lg", "cursor-pointer", "hover:bg-gray-100",
+      "transition-all", "duration-200", "flex", "flex-col", "items-center",
+      "justify-between", "shadow-md", "w-49", "h-40", "relative"
+    );
+    
+    const isSelected = selectedSchedules.some(schedule => schedule.id === jadwal.id);
+    formElement.classList.toggle("border-red-500", isSelected);
+    
+    formElement.innerHTML = `
+  <input type="checkbox" id="${jadwal.id}" class="hidden" ${isSelected ? "checked" : ""}>
+  <label for="${jadwal.id}" class="flex flex-col items-center relative w-full h-full p-4">
+    <div class="durasi text-sm text-gray-500">60 Menit</div>
+    <div class="jam text-lg font-semibold text-red-800">${jadwal.waktu}</div>
+    <div class="hargacol text-green-600 font-semibold">Rp ${jadwal.harga.toLocaleString("id-ID")}</div>
+    <div class="status ${jadwal.status === "Booked" ? "text-red-800" : "text-green-500"} font-semibold">
+      ${jadwal.status}
+    </div>
+    ${isSelected ? '<div class="absolute top-1 right-1 transform translate-x-2 -translate-y-2"><i class="ri-checkbox-circle-fill text-red-500 text-2xl"></i></div>' : ''}
+  </label>
+`;
+    if (jadwal.status !== "Booked") {
+      formElement.addEventListener("click", () => toggleSchedule(jadwal.id, jadwal.waktu, jadwal.harga));
+      if (isSelected) {
+        formElement.classList.add("border-red-500", "bg-red-100");
+      }
+    } else {
+      formElement.classList.add("cursor-not-allowed", "opacity-50");
+    }
+    container.appendChild(formElement);
+  });
+}
+function toggleSchedule(id, waktu, harga) {
+  const index = selectedSchedules.findIndex(item => item.id === id);
+  if (index > -1) {
+    selectedSchedules.splice(index, 1);
+  } else {
+    selectedSchedules.push({ id, waktu, harga });
+  }
+  updateSidebar();
+  generateSchedule();
+}
+
+function updateSidebar() {
+  const sidebar = document.getElementById("selected-sidebar");
+  const list = document.getElementById("selected-list");
+  const nextBtn = document.getElementById("next-btn");
+  
+  list.innerHTML = "";
+  
+  if (selectedSchedules.length > 0) {
+    sidebar.classList.remove("hidden");
+    nextBtn.classList.remove("hidden");
+    
+    selectedSchedules.forEach(schedule => {
+      const item = document.createElement("div");
+      item.classList.add("flex", "justify-between", "p-2", "border-b", "items-center");
+      item.innerHTML = `
+        <span>${schedule.waktu} - Rp ${schedule.harga.toLocaleString("id-ID")}</span>
+        <button onclick="removeSchedule('${schedule.id}')" class="text-red-500">✖</button>
+      `;
+      list.appendChild(item);
+    });
+  } else {
+    sidebar.classList.add("hidden");
+    nextBtn.classList.add("hidden");
+  }
+}
+
+document.getElementById("next-btn").addEventListener("click", () => {
+  if (selectedSchedules.length === 0) {
+    alert("Silakan pilih jadwal terlebih dahulu!");
+    return;
+  }
+
+  localStorage.setItem("selectedSchedules", JSON.stringify(selectedSchedules));
+  window.location.href = "PagePembayaran.html"; // Ganti dengan halaman pembayaran yang sesuai
+});
+
+
+function removeSchedule(id) {
+  selectedSchedules = selectedSchedules.filter(schedule => schedule.id !== id);
+  updateSidebar();
+  generateSchedule();
+}
+
+document.getElementById("dropdown-btn").addEventListener("click", () => {
+  document.getElementById("schedule-dropdown").classList.toggle("hidden");
+  generateSchedule();
+});
+
+// Logic Navbar
+document.addEventListener("DOMContentLoaded", function () {
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+        const profileImg = localStorage.getItem("profileImage") || "profile z.jpg";
+        const loginBtn = document.getElementById("login-btn");
+        const profileMenu = document.getElementById("profile-menu");
+        const profileImgTag = document.getElementById("profile-img");
+        const userDropdown = document.getElementById("user-dropdown");
+        const profileIcon = document.getElementById("profile-icon");
+        const logoutBtn = document.getElementById("logout-btn");
+
+        if (isLoggedIn === "true") {
+            loginBtn.classList.add("hidden");
+            profileMenu.classList.remove("hidden");
+            profileImgTag.src = profileImg;
+        }
+
+        // Toggle Dropdown Animation
+        profileIcon.addEventListener("click", function (event) {
+            event.stopPropagation();
+            if (userDropdown.classList.contains("hidden")) {
+                userDropdown.classList.remove("hidden", "opacity-0", "scale-95");
+                userDropdown.classList.add("opacity-100", "scale-100");
+            } else {
+                userDropdown.classList.add("opacity-0", "scale-95");
+                setTimeout(() => userDropdown.classList.add("hidden"), 200);
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function (event) {
+            if (!profileMenu.contains(event.target)) {
+                userDropdown.classList.add("opacity-0", "scale-95");
+                setTimeout(() => userDropdown.classList.add("hidden"), 200);
+            }
+        });
+
+        // Logout Function
+        logoutBtn.addEventListener("click", function () {
+            localStorage.removeItem("isLoggedIn");
+            localStorage.removeItem("profileImage");
+
+            // Redirect ke Home.html setelah logout
+            window.location.href = "Home.html";
+        });
+    });
+    $(document).ready(function () {
+        // Toggle Dropdown Menu
+        $("#user-menu-button").click(function () {
+            $("#user-dropdown").toggleClass("hidden");
+        });
+
+        $(document).ready(function(){
+            $("#hamburger").click(function(){
+                $("#mobile-menu").slideToggle();
+            });
+        });
+
+        // Tutup dropdown saat klik di luar area
+        $(document).click(function (event) {
+            if (!$(event.target).closest("#user-menu-button, #user-dropdown").length) {
+                $("#user-dropdown").addClass("hidden");
+            }
+        });
+        // Toggle Mobile Menu
+        $("[data-collapse-toggle]").click(function () {
+            $("#navbar-user").toggleClass("hidden");
+        });
+    });
+    </script>
+  </body> 
+
+  <div class="flex flex-col items-center text-center w-full max-w-lg mx-auto p-6 bg-white text-black rounded-lg shadow-md mb-10">
+    <div class="flex items-center mb-3 space-x-2">
+        <!-- Bintang rating -->
+        <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 22 20">
+            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+        </svg>
+        <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 22 20">
+            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+        </svg>
+        <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 22 20">
+            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+        </svg>
+        <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 22 20">
+            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+        </svg>
+        <p class="text-lg font-semibold text-black ml-3">4.95</p>
+        <p class="text-lg font-light text-gray-500">out of</p>
+        <p class="text-lg font-semibold text-black">5</p>
+    </div>
+    <p class="text-sm text-gray-500">1,745 global ratings</p>
+    
+    <div class="w-full mt-4 space-y-2">
+        <div class="flex items-center">
+            <span class="w-16 text-left text-black">5 star</span>
+            <div class="w-full h-4 bg-gray-200 rounded">
+                <div class="h-4 bg-red-500 rounded" style="width: 70%"></div>
+            </div>
+            <span class="ml-2 text-black">70%</span>
+        </div>
+        <div class="flex items-center">
+            <span class="w-16 text-left text-black">4 star</span>
+            <div class="w-full h-4 bg-gray-200 rounded">
+                <div class="h-4 bg-red-500 rounded" style="width: 17%"></div>
+            </div>
+            <span class="ml-2 text-black">17%</span>
+        </div>
+        <div class="flex items-center">
+            <span class="w-16 text-left text-black">3 star</span>
+            <div class="w-full h-4 bg-gray-200 rounded">
+                <div class="h-4 bg-red-500 rounded" style="width: 8%"></div>
+            </div>
+            <span class="ml-2 text-black">8%</span>
+        </div>
+        <div class="flex items-center">
+            <span class="w-16 text-left text-black">2 star</span>
+            <div class="w-full h-4 bg-gray-200 rounded">
+                <div class="h-4 bg-red-500 rounded" style="width: 4%"></div>
+            </div>
+            <span class="ml-2 text-black">4%</span>
+        </div>
+        <div class="flex items-center">
+            <span class="w-16 text-left text-black">1 star</span>
+            <div class="w-full h-4 bg-gray-200 rounded">
+                <div class="h-4 bg-red-500 rounded" style="width: 1%"></div>
+            </div>
+            <span class="ml-2 text-black">1%</span>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-white dark:bg-gray-900">
+    <div class="mx-auto w-full max-w-screen-xl">
+        <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-3">
+            <div>
+                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Company</h2>
+                <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                    <li class="mb-4">
+                        <a href="About.html" class="hover:text-red-800 focus:text-red-800">About Us</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="Privacy&Policy.html" class="hover:text-red-800 focus:text-red-800">Privacy & Policy</a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="Terms&Conditions.html" class="hover:text-red-800 focus:text-red-800">Terms & Condition</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Contact Us</h2>
+                <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                    <li class="mb-4">
+                        <a href="ContactUs.html" class="hover:text-red-800 focus:text-red-800">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">How to Reach Us</h2>
+                <div class="flex space-x-5 rtl:space-x-reverse">
+                    <a href="https://www.instagram.com/ayo.indonesia/" target="_blank" class="text-gray-400 hover:text-red-800 focus:text-red-800">
+                        <i class="ri-instagram-line text-xl"></i>
+                    </a>
+                    <a href="https://maps.app.goo.gl/vyFhwrUeHUohAFvD8" target="_blank" class="text-gray-400 hover:text-red-800 focus:text-red-800">
+                        <i class="ri-map-pin-2-fill text-xl"></i>
+                    </a>
+                    <a href="https://x.com/ayosportapp" target="_blank" class="text-gray-400 hover:text-red-800 focus:text-red-800">
+                        <i class="ri-twitter-fill text-xl"></i>
+                    </a>
+                    <a href="https://web.facebook.com/ayo.indonesia.sports?_rdc=1&_rdr" target="_blank" class="text-gray-400 hover:text-red-800 focus:text-red-800">
+                        <i class="ri-facebook-fill text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="px-4 py-6 bg-white dark:bg-white md:flex md:items-center md:justify-between">
+            <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2025 Super Sport App Indonesia. All Rights Reserved.
+            </span>
+        </div>        
+    </div>
+</footer>
+<!-- FOOTER -->
+
+</body>
+</html>

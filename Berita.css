@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    text-decoration: none;
+    list-style: none;
+}
+
+:root {
+    --bg-color: #F8F9FC;
+    --darkW-color: #c0c0c0;
+    --darkerW-color: #757575;
+    --main-color: #C00000;
+    --text-color: #212121;
+    --second-color: #DE3C3C;
+    --third-color: #F7B32D;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+}
+
+.main button {
+    margin-right: 15px;
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#menu-icon {
+    font-size: 35px;
+    color: var(--text-color);
+    cursor: pointer;
+    z-index: 10001;
+    display: none;
+}
+
+@media (max-width: 1280px) {
+    header {
+        padding: 14px 2%;
+        transition: .2s;
+    }
+
+    .navbar a {
+        padding: 5px 0;
+        margin: 0px 20px;
+    }
+}
+
+@media (max-width: 720px) {
+    #menu-icon {
+        display: block;
+    }
+}
+
+main {
+    max-width: 960px;
+    margin: 10px auto; /* Mengurangi margin atas */
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+/* Kontainer berita lebih responsif */
+.news-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom di desktop */
+    gap: 20px;
+}
+
+/* Kartu berita */
+.news-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.news-card:hover {
+    transform: scale(1.02);
+}
+
+.image-container img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 720px) {
+    .news-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 kolom di mobile */
+        gap: 15px;
+    }
+}
+
+.title-section {
+    /* margin-top: 80px; adjust this value to match the height of your navbar */
+    /* background-color: var(--bg-color); */
+    /* padding: 20px; */
+    /* text-align: center; */
+    border-radius: 10px;
+}
+
+.title-section h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.title-section p {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--main-color);
+    text-align: justify;
+}
+
+.image-section {
+    margin: 20px 0;
+}
+
+.image-section img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.article-content {
+    line-height: 1.6;
+}
+
+.article-content h2 {
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.article-content p {
+    margin-bottom: 15px;
+    text-align: justify;
+}

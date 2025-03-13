@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Lapangan</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <link rel="shortcut icon" type="x-icon" href="LOGO SUPER SPORT APP.png">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #F8F9FC;
+            --main-color: #C00000;
+            --text-color: #212121;
+            --second-color: #DE3C3C;
+            --third-color: #F7B32D;
+        }
+
+        #mobile-menu {
+            position: fixed;
+            top: 4rem; /* Pastikan sejajar dengan navbar */
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body style="background-color: var(--bg-color); color: var(--text-color);">
+    <nav class="bg-white border-gray-200 dark:bg-gray-900 sticky top-0 z-50">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="Home.html" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="LOGO SUPER SPORT APP.png" class="h-8" alt="Flowbite Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap text-red-800">Super Sport App</span>
+            </a>
+
+     <!-- Login Button or Profile Icon -->
+     <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+        <button id="login-btn" type="button" onclick="window.location.href='Login.html';" 
+            class="text-white bg-red-800 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
+            Login
+        </button>
+        
+        <!-- Profile Icon (Hidden by Default) -->
+        <div id="profile-menu" class="hidden relative">
+            <button id="profile-icon" class="w-10 h-10 rounded-full bg-gray-300 overflow-hidden focus:outline-none">
+                <img id="profile-img" src="profile z.jpg" alt="Profile">
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 transition-all duration-300 opacity-0 scale-95">
+                <a href="Profile.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</a>
+                <a href="Dashboard.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dasbor</a>
+                <button id="logout-btn" class="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">Keluar</button>
+            </div>
+        </div>
+        
+        <button id="hamburger" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden">
+            <span class="sr-only">Open menu</span>
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+        <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <li>
+            <a href="Home.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
+          </li>
+          <li>
+            <a href="PageSewaLapangan.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sewa Lapangan</a>
+          </li>
+          <li>
+            <a href="PageBerita.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Blog</a>
+          </li>
+          <li>
+            <a href="About.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About Us</a>
+          </li>
+        </ul>
+      </div> 
+    </div>
+    </nav>
+
+ <!-- Mobile Menu -->
+ <nav id="mobile-menu" class="absolute left-0 w-full bg-white shadow-md p-4 md:hidden">
+    <a href="Home.html" class="block py-2 border-b">Home</a>
+    <a href="PageSewaLapangan.html" class="block py-2 border-b">Sewa Lapangan</a>
+    <a href="PageBerita.html" class="block py-2 border-b">Blog</a>
+    <a href="About.html" class="block py-2 border-b">About</a>
+</div>
+</div>
+</nav>
+
+    <!-- Dropdown menu -->
+    <div id="dropdownMenu" class="hidden absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-64 dark:bg-gray-700">
+        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+            <li>
+                <a href="PageSewaLapangan.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sewa Lapangan</a>
+            </li>
+            <li>
+                <a href="PageBerita.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Blog</a>
+            </li>
+            <li>
+                <a href="ContactUs.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Contact Us</a>
+            </li>
+            <li>
+                <a href="About.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">About Us</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+  const scheduleContainer = document.getElementById("schedule-container"); // Ganti dengan ID elemen tempat menampilkan jadwal
+  const selectedSchedules = JSON.parse(localStorage.getItem("selectedSchedules")) || [];
+
+  if (selectedSchedules.length === 0) {
+    scheduleContainer.innerHTML = "<p>Tidak ada jadwal yang dipilih.</p>";
+    return;
+  }
+
+  selectedSchedules.forEach(schedule => {
+    const item = document.createElement("div");
+    item.classList.add("flex", "justify-between", "p-2", "border-b", "items-center");
+    item.innerHTML = `
+      <span>${schedule.waktu} - Rp ${schedule.harga.toLocaleString("id-ID")}</span>
+    `;
+    scheduleContainer.appendChild(item);
+  });
+});
+    </script>
+
+<!-- Bagian jadwal yang dipilih -->
+<section class="max-w-3xl mx-auto mt-10 p-5 bg-white shadow-lg rounded-lg">
+    <h2 class="text-xl font-semibold text-gray-900">Jadwal yang Dipilih</h2>
+    <div id="jadwal-container" class="mt-4">
+        <!-- Data akan diisi dengan JavaScript -->
+    </div>
+    <div class="mt-4">
+        <p class="font-bold text-lg">Total Harga: <span id="total-harga">Rp 0</span></p>
+    </div>
+
+   <!-- Tombol Lanjutkan ke Pembayaran -->
+<button id="btnBayar" class="mt-4 w-full bg-red-800 text-white py-2 rounded-lg hover:bg-red-900">
+    Lanjutkan ke Pembayaran
+</button>
+
+<!-- Tombol Kembali ke GOR -->
+<button id="btnKembali" class="mt-2 w-full bg-gray-500 text-black py-2 rounded-lg hover:bg-white-900">
+    Kembali ke GOR
+</button>
+
+<script>
+document.getElementById("btnKembali").addEventListener("click", function () {
+    window.location.href = "GorSima.html"; // Ganti dengan URL halaman GOR
+});
+
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const jadwalContainer = document.getElementById("jadwal-container");
+    const totalHargaElem = document.getElementById("total-harga");
+    const btnBayar = document.getElementById("btnBayar");
+
+    // Ambil data dari LocalStorage
+    let jadwal = JSON.parse(localStorage.getItem("selectedSchedules")) || [];
+
+    // Render data jadwal yang dipilih
+    function renderJadwal() {
+        jadwalContainer.innerHTML = "";
+        let totalHarga = 0;
+
+        if (jadwal.length === 0) {
+            jadwalContainer.innerHTML = "<p class='text-gray-600'>Tidak ada jadwal yang dipilih.</p>";
+            totalHargaElem.textContent = "Rp 0"; // Ubah total harga menjadi 0
+            btnBayar.disabled = true;
+            return;
+        }
+
+        jadwal.forEach((item, index) => {
+            totalHarga += item.harga;
+            jadwalContainer.innerHTML += `
+                <div class="p-3 border-b flex justify-between">
+                    <div>
+                        <p class="font-medium">${item.waktu}</p>
+                        <p class="text-sm text-gray-500">Rp ${item.harga.toLocaleString()}</p>
+                    </div>
+                    <button onclick="hapusJadwal(${index})" class="text-red-600 hover:text-red-800">
+                        Hapus
+                    </button>
+                </div>
+            `;
+        });
+
+        // Jika semua jadwal dihapus, total harga menjadi 0
+        if (jadwal.length === 0) {
+            totalHarga = 0;
+        }
+
+        totalHargaElem.textContent = `Rp ${totalHarga.toLocaleString()}`;
+        btnBayar.disabled = false;
+    }
+
+    // Hapus jadwal yang dipilih
+    window.hapusJadwal = function (index) {
+        jadwal.splice(index, 1);
+        localStorage.setItem("selectedSchedules", JSON.stringify(jadwal));
+        renderJadwal();
+    };
+
+    // Tombol Lanjutkan ke Pembayaran
+    btnBayar.addEventListener("click", function () {
+        window.location.href = "PageCheckout.html";
+    });
+
+    renderJadwal();
+});
+
+</script>
+
+ <script>
+       document.addEventListener("DOMContentLoaded", function () {
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+        const profileImg = localStorage.getItem("profileImage") || "profile z.jpg";
+        const loginBtn = document.getElementById("login-btn");
+        const profileMenu = document.getElementById("profile-menu");
+        const profileImgTag = document.getElementById("profile-img");
+        const userDropdown = document.getElementById("user-dropdown");
+        const profileIcon = document.getElementById("profile-icon");
+        const logoutBtn = document.getElementById("logout-btn");
+
+        if (isLoggedIn === "true") {
+            loginBtn.classList.add("hidden");
+            profileMenu.classList.remove("hidden");
+            profileImgTag.src = profileImg;
+        }
+
+        // Toggle Dropdown Animation
+        profileIcon.addEventListener("click", function (event) {
+            event.stopPropagation();
+            if (userDropdown.classList.contains("hidden")) {
+                userDropdown.classList.remove("hidden", "opacity-0", "scale-95");
+                userDropdown.classList.add("opacity-100", "scale-100");
+            } else {
+                userDropdown.classList.add("opacity-0", "scale-95");
+                setTimeout(() => userDropdown.classList.add("hidden"), 200);
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function (event) {
+            if (!profileMenu.contains(event.target)) {
+                userDropdown.classList.add("opacity-0", "scale-95");
+                setTimeout(() => userDropdown.classList.add("hidden"), 200);
+            }
+        });
+
+        // Logout Function
+        logoutBtn.addEventListener("click", function () {
+            localStorage.removeItem("isLoggedIn");
+            localStorage.removeItem("profileImage");
+
+            // Redirect ke Home.html setelah logout
+            window.location.href = "Home.html";
+        });
+    });
+    $(document).ready(function () {
+        // Toggle Dropdown Menu
+        $("#user-menu-button").click(function () {
+            $("#user-dropdown").toggleClass("hidden");
+        });
+
+        $(document).ready(function(){
+            $("#hamburger").click(function(){
+                $("#mobile-menu").slideToggle();
+            });
+        });
+
+        // Tutup dropdown saat klik di luar area
+        $(document).click(function (event) {
+            if (!$(event.target).closest("#user-menu-button, #user-dropdown").length) {
+                $("#user-dropdown").addClass("hidden");
+            }
+        });
+        // Toggle Mobile Menu
+        $("[data-collapse-toggle]").click(function () {
+            $("#navbar-user").toggleClass("hidden");
+        });
+    });
+ </script>
+    
+</body>
+</html>
+

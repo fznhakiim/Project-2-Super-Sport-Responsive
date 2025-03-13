@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="x-icon" href="Vector.png">
+    <title>Register</title>
+    <link rel="stylesheet" href="Login.css">
+</head>
+<body>
+    <div class="login-wrapper">
+        <form id="register-form" class="form">
+            <img src="Media/pict.svg" alt="">
+            <h2>Register</h2>
+            <div class="input-group">
+                <input type="text" name="registerUser" id="registerUser" required>
+                <label for="registerUser">User Name</label>
+            </div>
+            <div class="input-group">
+                <input type="email" name="registerEmail" id="registerEmail" required>
+                <label for="registerEmail">Email</label>
+            </div>
+            <div class="input-group">
+                <input type="password" name="registerPassword" id="registerPassword" required>
+                <label for="registerPassword">Password</label>
+            </div>
+            <div class="input-group">
+                <input type="password" name="ConfirmPassword" id="ConfirmPassword" required>
+                <label for="ConfirmPassword">Konfirmasi Password</label>
+            </div>
+            <label for="">Sudah punya akun? <span id="daftar"><a href="Login.html"> Masuk Sekarang!</a></span></label>
+            <input class="btn" type="submit" value="Register">
+            <button type="button" class="btn-exit" onclick="location.href='Home.html'">Cancel</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('registerUser').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('ConfirmPassword').value;
+
+            if (!validateEmail(email)) {
+                alert('Invalid email format.');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return;
+            }
+
+            localStorage.setItem('username', username);
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password);
+            localStorage.setItem('isLoggedIn', 'true');
+            alert('Registration successful!');
+            window.location.href = 'Login.html';
+        });
+
+        function validateEmail(email) {
+            const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            return re.test(String(email).toLowerCase());
+        }
+    </script>
+</body>
+</html>

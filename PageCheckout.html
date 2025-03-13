@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <link rel="shortcut icon" type="x-icon" href="LOGO SUPER SPORT APP.png">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #F8F9FC;
+            --main-color: #C00000;
+            --text-color: #212121;
+            --second-color: #DE3C3C;
+            --third-color: #F7B32D;
+        }
+
+        #mobile-menu {
+            position: fixed;
+            top: 4rem; /* Pastikan sejajar dengan navbar */
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body style="background-color: var(--bg-color); color: var(--text-color);">
+    <nav class="bg-white border-gray-200 dark:bg-gray-900 sticky top-0 z-50">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="Home.html" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="LOGO SUPER SPORT APP.png" class="h-8" alt="Flowbite Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap text-red-800">Super Sport App</span>
+            </a>
+            
+            <!-- Login Button or Profile Icon -->
+     <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+        <button id="login-btn" type="button" onclick="window.location.href='Login.html';" 
+            class="text-white bg-red-800 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
+            Login
+        </button>
+
+         <!-- Profile Icon (Hidden by Default) -->
+        <div id="profile-menu" class="hidden relative">
+            <button id="profile-icon" class="w-10 h-10 rounded-full bg-gray-300 overflow-hidden focus:outline-none">
+                <img id="profile-img" src="profile z.jpg" alt="Profile">
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 transition-all duration-300 opacity-0 scale-95">
+                <a href="Profile.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</a>
+                <a href="Dashboard.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dasbor</a>
+                <button id="logout-btn" class="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">Keluar</button>
+            </div>
+        </div>
+        
+        <button id="hamburger" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden">
+            <span class="sr-only">Open menu</span>
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+        <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <li>
+            <a href="Home.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
+          </li>
+          <li>
+            <a href="PageSewaLapangan.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sewa Lapangan</a>
+          </li>
+          <li>
+            <a href="PageBerita.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Blog</a>
+          </li>
+          <li>
+            <a href="About.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About Us</a>
+          </li>
+        </ul>
+      </div> 
+    </div>
+    </nav>
+    
+      
+   <!-- Mobile Menu -->
+ <nav id="mobile-menu" class="absolute left-0 w-full bg-white shadow-md p-4 md:hidden">
+    <a href="Home.html" class="block py-2 border-b">Home</a>
+    <a href="PageSewaLapangan.html" class="block py-2 border-b">Sewa Lapangan</a>
+    <a href="PageBerita.html" class="block py-2 border-b">Blog</a>
+    <a href="About.html" class="block py-2 border-b">About</a>
+</div>
+</div>
+</nav>
+
+    <!-- Dropdown menu -->
+    <div id="dropdownMenu" class="hidden absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-64 dark:bg-gray-700">
+        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+            <li>
+                <a href="PageSewaLapangan.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sewa Lapangan</a>
+            </li>
+            <li>
+                <a href="PageBerita.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Blog</a>
+            </li>
+            <li>
+                <a href="ContactUs.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Contact Us</a>
+            </li>
+            <li>
+                <a href="About.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">About Us</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- ✅ Halaman Checkout -->
+<div class="max-w-4xl mx-auto mt-6 p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- ✅ Metode Pembayaran -->
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-lg font-semibold text-red-800 flex items-center">Metode Pembayaran</h2>
+        <hr class="my-4">
+        <div id="payment-methods">
+            <button class="payment-method w-full flex items-center justify-between p-4 border border-gray-400 rounded-lg hover:bg-gray-100"
+                onclick="selectPayment(this, 'Virtual Account', 6500)">
+                <span class="flex items-center">
+                    <img src="virtual-account-.png" class="w-8 mr-2" alt="VA"> Transfer Virtual Account
+                </span>
+                <span class="text-gray-600">Rp6.500</span>
+            </button>
+            <button class="payment-method w-full flex items-center justify-between p-4 border border-gray-400 rounded-lg hover:bg-gray-100 mt-3"
+                onclick="selectPayment(this, 'Alfamart', 3000)">
+                <span class="flex items-center">
+                    <img src="ALFAMART_LOGO_BARU.png" class="w-8 mr-2" alt="Alfamart"> Alfamart
+                </span>
+                <span class="text-gray-600">Rp3.000</span>
+            </button>
+            <button class="payment-method w-full flex items-center justify-between p-4 border border-gray-400 rounded-lg hover:bg-gray-100 mt-3"
+                onclick="selectPayment(this, 'GoPay', 1910)">
+                <span class="flex items-center">
+                    <img src="logo-gopay-vector.png" class="w-8 mr-2" alt="GoPay"> GoPay
+                </span>
+                <span class="text-gray-600">Rp1.910</span>
+            </button>
+            <button class="payment-method w-full flex items-center justify-between p-4 border border-gray-400 rounded-lg hover:bg-gray-100 mt-3"
+                onclick="selectPayment(this, 'Dana', 2000)">
+                <span class="flex items-center">
+                    <img src="Logo_dana_blue.svg.png" class="w-8 mr-2" alt="Dana"> Dana
+                </span>
+                <span class="text-gray-600">Rp2.000</span>
+            </button>
+            <button class="payment-method w-full flex items-center justify-between p-4 border border-gray-400 rounded-lg hover:bg-gray-100 mt-3"
+                onclick="selectPayment(this, 'OVO', 2500)">
+                <span class="flex items-center">
+                    <img src="logo-ovo-pay.webp" class="w-8 mr-2" alt="OVO"> OVO
+                </span>
+                <span class="text-gray-600">Rp2.500</span>
+            </button>
+            <button class="payment-method w-full flex items-center justify-between p-4 border border-gray-400 rounded-lg hover:bg-gray-100 mt-3"
+                onclick="selectPayment(this, 'ShopeePay', 1800)">
+                <span class="flex items-center">
+                    <img src="shopee-pay-logo-png_seeklogo-406839.png" class="w-8 mr-2" alt="ShopeePay"> ShopeePay
+                </span>
+                <span class="text-gray-600">Rp1.800</span>
+            </button>
+            <button class="payment-method w-full flex items-center justify-between p-4 border border-gray-400 rounded-lg hover:bg-gray-100 mt-3"
+                onclick="selectPayment(this, 'QRIS', 1200)">
+                <span class="flex items-center">
+                    <img src="quick-response-code-indonesia-standard-qris-logo-png_seeklogo-391791.png" class="w-8 mr-2" alt="QRIS"> QRIS
+                </span>
+                <span class="text-gray-600">Rp1.200</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ✅ Rincian Biaya -->
+    <div class="bg-white p-6 rounded-lg shadow-lg flex-grow md:w-[500px] md:h-[300px] w-full">
+        <h2 class="text-lg font-semibold text-red-800">Rincian Biaya</h2>
+        <hr class="my-4">
+        <div class="space-y-2">
+            <div class="flex justify-between">
+                <span>Biaya Sewa</span>
+                <span id="biaya-sewa">Rp 0</span>
+            </div>
+            <div class="flex justify-between">
+                <span>Convenience Fee</span>
+                <span id="convenience-fee">Rp 0</span>
+            </div>
+            <div class="flex justify-between font-bold">
+                <span>Total Bayar</span>
+                <span id="total-bayar">Rp 0</span>
+            </div>
+        </div>
+
+        <p class="text-sm text-gray-600 mt-4">
+            Dengan mengklik tombol berikut, Anda menyetujui <a href="#" class="text-red-700 underline">Syarat dan Ketentuan</a> serta <a href="#" class="text-red-700 underline">Kebijakan Privasi</a>.
+        </p>
+
+        <button id="btnBayar" class="w-full mt-4 bg-gray-400 text-white py-2 rounded-lg cursor-not-allowed" disabled>
+            Lakukan Pembayaran
+        </button>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let jadwal = JSON.parse(localStorage.getItem("selectedSchedules")) || [];
+        let biayaSewa = jadwal.reduce((acc, item) => acc + item.harga, 0);
+
+        document.getElementById("biaya-sewa").textContent = `Rp ${biayaSewa.toLocaleString()}`;
+        document.getElementById("total-bayar").textContent = `Rp ${biayaSewa.toLocaleString()}`;
+
+        localStorage.setItem("totalBayar", biayaSewa);
+    });
+
+    function selectPayment(button, method, fee) {
+        let biayaSewa = parseInt(localStorage.getItem("totalBayar")) || 0;
+        let totalBayar = biayaSewa + fee;
+
+        document.getElementById("convenience-fee").textContent = `Rp ${fee.toLocaleString()}`;
+        document.getElementById("total-bayar").textContent = `Rp ${totalBayar.toLocaleString()}`;
+
+        localStorage.setItem("selectedPaymentMethod", method);
+        localStorage.setItem("convenienceFee", fee);
+        localStorage.setItem("totalBayarFinal", totalBayar);
+
+        // Menghapus border merah dari semua tombol pembayaran
+        document.querySelectorAll(".payment-method").forEach(btn => {
+            btn.classList.remove("border-red-800");
+            btn.classList.add("border-gray-400");
+        });
+
+
+        // Menambahkan border merah ke tombol yang dipilih
+        button.classList.remove("border-gray-400");
+        button.classList.add("border-red-800");
+
+        // Aktifkan tombol "Lakukan Pembayaran"
+let btnBayar = document.getElementById("btnBayar");
+btnBayar.classList.remove("bg-gray-400", "cursor-not-allowed");
+btnBayar.classList.add("bg-red-800", "hover:bg-red-900");
+btnBayar.disabled = false;
+
+// Tambahkan event listener untuk berpindah halaman saat diklik
+btnBayar.addEventListener("click", function() {
+    window.location.href = "PageBayarQRIS.html";
+});
+    }
+</script>
+
+
+<script>
+     document.addEventListener("DOMContentLoaded", function () {
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+        const profileImg = localStorage.getItem("profileImage") || "profile z.jpg";
+        const loginBtn = document.getElementById("login-btn");
+        const profileMenu = document.getElementById("profile-menu");
+        const profileImgTag = document.getElementById("profile-img");
+        const userDropdown = document.getElementById("user-dropdown");
+        const profileIcon = document.getElementById("profile-icon");
+        const logoutBtn = document.getElementById("logout-btn");
+
+        if (isLoggedIn === "true") {
+            loginBtn.classList.add("hidden");
+            profileMenu.classList.remove("hidden");
+            profileImgTag.src = profileImg;
+        }
+
+        // Toggle Dropdown Animation
+        profileIcon.addEventListener("click", function (event) {
+            event.stopPropagation();
+            if (userDropdown.classList.contains("hidden")) {
+                userDropdown.classList.remove("hidden", "opacity-0", "scale-95");
+                userDropdown.classList.add("opacity-100", "scale-100");
+            } else {
+                userDropdown.classList.add("opacity-0", "scale-95");
+                setTimeout(() => userDropdown.classList.add("hidden"), 200);
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function (event) {
+            if (!profileMenu.contains(event.target)) {
+                userDropdown.classList.add("opacity-0", "scale-95");
+                setTimeout(() => userDropdown.classList.add("hidden"), 200);
+            }
+        });
+
+        // Logout Function
+        logoutBtn.addEventListener("click", function () {
+            localStorage.removeItem("isLoggedIn");
+            localStorage.removeItem("profileImage");
+
+            // Redirect ke Home.html setelah logout
+            window.location.href = "Home.html";
+        });
+    });
+    $(document).ready(function () {
+        // Toggle Dropdown Menu
+        $("#user-menu-button").click(function () {
+            $("#user-dropdown").toggleClass("hidden");
+        });
+
+        $(document).ready(function(){
+            $("#hamburger").click(function(){
+                $("#mobile-menu").slideToggle();
+            });
+        });
+
+        // Tutup dropdown saat klik di luar area
+        $(document).click(function (event) {
+            if (!$(event.target).closest("#user-menu-button, #user-dropdown").length) {
+                $("#user-dropdown").addClass("hidden");
+            }
+        });
+        // Toggle Mobile Menu
+        $("[data-collapse-toggle]").click(function () {
+            $("#navbar-user").toggleClass("hidden");
+        });
+    });
+</script>
+</body>
+</html>
