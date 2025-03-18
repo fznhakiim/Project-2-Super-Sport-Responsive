@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,10 +9,11 @@
     <title>Login</title>
     <link rel="stylesheet" href="Login.css">
 </head>
+
 <body>
     <div class="login-wrapper">
         <form id="login-form" class="form">
-            <img src="Media/pict.svg" alt="">
+            <img src="res/img/Media/pict.svg" alt="">
             <h2>Login</h2>
             <div class="input-group">
                 <input type="text" name="loginUser" id="loginUser" required>
@@ -21,13 +23,14 @@
                 <input type="password" name="loginPassword" id="loginPassword" required>
                 <label for="loginPassword">Password</label>
             </div>
-            <label for="">Belum punya akun? <span id="daftar"><a href="register.html"> Daftarkan Sekarang!</a></span></label>
+            <label for="">Belum punya akun? <span id="daftar"><a href="register.html"> Daftarkan
+                        Sekarang!</a></span></label>
             <input class="btn" type="submit" value="Log In">
             <button type="button" class="btn-exit" onclick="location.href='Home.html'">Cancel</button>
         </form>
     </div>
     <script>
-        document.getElementById('login-form').addEventListener('submit', function(event) {
+        document.getElementById('login-form').addEventListener('submit', function (event) {
             event.preventDefault();
             const username = document.getElementById('loginUser').value;
             const password = document.getElementById('loginPassword').value;
@@ -45,4 +48,5 @@
         });
     </script>
 </body>
+
 </html>

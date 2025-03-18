@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,10 +9,11 @@
     <title>Register</title>
     <link rel="stylesheet" href="Login.css">
 </head>
+
 <body>
     <div class="login-wrapper">
         <form id="register-form" class="form">
-            <img src="Media/pict.svg" alt="">
+            <img src="res/img/Media/pict.svg" alt="">
             <h2>Register</h2>
             <div class="input-group">
                 <input type="text" name="registerUser" id="registerUser" required>
@@ -35,7 +37,7 @@
         </form>
     </div>
     <script>
-        document.getElementById('register-form').addEventListener('submit', function(event) {
+        document.getElementById('register-form').addEventListener('submit', function (event) {
             event.preventDefault();
             const username = document.getElementById('registerUser').value;
             const email = document.getElementById('registerEmail').value;
@@ -66,4 +68,5 @@
         }
     </script>
 </body>
+
 </html>
