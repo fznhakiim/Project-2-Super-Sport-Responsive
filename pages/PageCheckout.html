@@ -1,361 +1,308 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
+    <title>Checkout | Super Sport App</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <link rel="shortcut icon" type="x-icon" href="LOGO SUPER SPORT APP.png">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <link rel="shortcut icon" type="x-icon" href="/assets/img/LOGO SUPER SPORT APP.png">
+
     <style>
         :root {
-            --bg-color: #F8F9FC;
-            --main-color: #C00000;
-            --text-color: #212121;
-            --second-color: #DE3C3C;
-            --third-color: #F7B32D;
+            --primary: #CC0000;
+            --primary-dark: #A10000;
+            --surface: #FFFFFF;
+            --surface-alt: #F9F9F9;
+            --text-main: #111111;
+            --text-muted: #888888;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
         }
 
-        #mobile-menu {
-            position: fixed;
-            top: 4rem;
-            /* Pastikan sejajar dengan navbar */
-            left: 0;
-            width: 100%;
-            background-color: white;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            display: none;
-            z-index: 50;
+        body {
+            font-family: var(--font-main);
+            background-color: var(--surface-alt);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .payment-method {
+            background: white;
+            border: 2px solid #F0F0F0;
+            border-radius: 24px;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+        }
+
+        .payment-method:hover {
+            border-color: #E5E7EB;
+            transform: translateY(-2px);
+        }
+
+        .payment-method.selected {
+            border-color: var(--primary);
+            background: rgba(204, 0, 0, 0.02);
+            box-shadow: 0 10px 20px rgba(204, 0, 0, 0.05);
+        }
+
+        .btn-action {
+            background: var(--primary);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .btn-action:hover:not(:disabled) {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(204, 0, 0, 0.2);
+        }
+        
+        .btn-action:disabled {
+            background: #E5E7EB;
+            color: #9CA3AF;
+            cursor: not-allowed;
         }
     </style>
 </head>
 
-<body style="background-color: var(--bg-color); color: var(--text-color);">
-    <nav class="bg-white border-gray-200 dark:bg-gray-900 sticky top-0 z-50">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="../index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="../assets/img/LOGO SUPER SPORT APP.png" class="h-8" alt="Flowbite Logo" />
-                <span class="self-center text-xl font-semibold whitespace-nowrap text-red-800">Super Sport App</span>
+<body>
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 py-5 nav-glass" id="header">
+        <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between">
+            <a href="/index.html" class="flex items-center gap-4">
+                <div class="bg-red-700 p-2 rounded-xl">
+                    <img src="/assets/img/LOGO SUPER SPORT APP.png" class="h-6" alt="Logo">
+                </div>
+                <span class="text-xl font-black tracking-tighter uppercase">Super Sport</span>
             </a>
 
-            <!-- Login Button or Profile Icon -->
-            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <button id="login-btn" type="button" onclick="window.location.href='Login.html';"
-                    class="text-white bg-red-800 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
-                    Login
-                </button>
-
-                <!-- Profile Icon (Hidden by Default) -->
-                <div id="profile-menu" class="hidden relative">
-                    <button id="profile-icon"
-                        class="w-10 h-10 rounded-full bg-gray-300 overflow-hidden focus:outline-none">
-                        <img id="profile-img" src="../assets/img/profile z.jpg" alt="Profile">
-                    </button>
-
-                    <!-- Dropdown Menu -->
-                    <div id="user-dropdown"
-                        class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 transition-all duration-300 opacity-0 scale-95">
-                        <a href="Profile.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</a>
-                        <button id="logout-btn"
-                            class="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">Keluar</button>
+            <div class="hidden md:flex items-center gap-12">
+                <ul class="flex gap-10 text-[10px] font-black tracking-widest uppercase">
+                    <li><a href="/index.html" class="hover:text-red-700 transition-colors">Beranda</a></li>
+                    <li><a href="/pages/PageSewaLapangan.html" class="text-red-700 font-bold">Booking</a></li>
+                    <li><a href="/pages/PageBerita.html" class="hover:text-red-700 transition-colors">Artikel</a></li>
+                    <li><a href="/pages/About.html" class="hover:text-red-700 transition-colors">Tentang</a></li>
+                </ul>
+                <div id="auth-ui">
+                    <button id="login-btn" onclick="window.location.href='/pages/Login.html'" class="text-[10px] font-black uppercase tracking-widest bg-gray-900 text-white px-8 py-3 rounded-xl hover:bg-red-700 transition-all">Sign In</button>
+                    
+                    <div id="profile-menu" class="hidden relative">
+                        <button id="profile-icon" class="w-10 h-10 rounded-xl border-2 border-red-700 p-0.5">
+                            <img id="profile-img" src="/assets/img/profile z.jpg" class="w-full h-full object-cover rounded-lg">
+                        </button>
+                        <div id="user-dropdown" class="hidden absolute right-0 mt-4 w-52 bg-white rounded-2xl shadow-2xl border border-gray-100 p-2">
+                            <a href="/pages/Profile.html" class="block px-4 py-3 text-sm font-bold text-gray-700 hover:bg-red-50 rounded-xl">Profil</a>
+                            <button id="logout-btn" class="w-full text-left px-4 py-3 text-sm font-bold text-red-600 hover:bg-red-50 rounded-xl">Logout</button>
+                        </div>
                     </div>
                 </div>
-
-                <button id="hamburger" type="button"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden">
-                    <span class="sr-only">Open menu</span>
-                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 1h15M1 7h15M1 13h15" />
-                    </svg>
-                </button>
             </div>
-
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-                <ul
-                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                    <li>
-                        <a href="../index.html"
-                            class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
-                    </li>
-                    <li>
-                        <a href="PageSewaLapangan.html"
-                            class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sewa
-                            Lapangan</a>
-                    </li>
-                    <li>
-                        <a href="PageBerita.html"
-                            class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Blog</a>
-                    </li>
-                    <li>
-                        <a href="About.html"
-                            class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About
-                            Us</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
-    <!-- Mobile Menu -->
-    <nav id="mobile-menu" class="absolute left-0 w-full bg-white shadow-md p-4 md:hidden">
-        <a href="../index.html" class="block py-2 border-b">Home</a>
-        <a href="PageSewaLapangan.html" class="block py-2 border-b">Sewa Lapangan</a>
-        <a href="PageBerita.html" class="block py-2 border-b">Blog</a>
-        <a href="About.html" class="block py-2 border-b">About</a>
-        </div>
-        </div>
-    </nav>
-
-    <!-- Dropdown menu -->
-    <div id="dropdownMenu"
-        class="hidden absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-64 dark:bg-gray-700">
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
-            <li>
-                <a href="PageSewaLapangan.html"
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sewa
-                    Lapangan</a>
-            </li>
-            <li>
-                <a href="PageBerita.html"
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Blog</a>
-            </li>
-            <li>
-                <a href="ContactUs.html"
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Contact
-                    Us</a>
-            </li>
-            <li>
-                <a href="About.html"
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">About Us</a>
-            </li>
-        </ul>
-    </div>
-    </div>
-
-    <!-- ✅ Halaman Checkout -->
-    <div class="max-w-4xl mx-auto mt-6 p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- ✅ Metode Pembayaran -->
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h2 class="text-lg font-semibold text-red-800 flex items-center">Metode Pembayaran</h2>
-            <hr class="my-4">
-            <div id="payment-methods">
-                <button
-                    class="payment-method w-full flex items-center justify-between p-4 border border-gray-400 rounded-lg hover:bg-gray-100"
-                    onclick="selectPayment(this, 'Virtual Account', 6500)">
-                    <span class="flex items-center">
-                        <img src="../assets/img/virtual-account-.png" class="w-8 mr-2" alt="VA"> Transfer Virtual Account
-                    </span>
-                    <span class="text-gray-600">Rp6.500</span>
-                </button>
-                <button
-                    class="payment-method w-full flex items-center justify-between p-4 border border-gray-400 rounded-lg hover:bg-gray-100 mt-3"
-                    onclick="selectPayment(this, 'Alfamart', 3000)">
-                    <span class="flex items-center">
-                        <img src="../assets/img/ALFAMART_LOGO_BARU.png" class="w-8 mr-2" alt="Alfamart"> Alfamart
-                    </span>
-                    <span class="text-gray-600">Rp3.000</span>
-                </button>
-                <button
-                    class="payment-method w-full flex items-center justify-between p-4 border border-gray-400 rounded-lg hover:bg-gray-100 mt-3"
-                    onclick="selectPayment(this, 'GoPay', 1910)">
-                    <span class="flex items-center">
-                        <img src="../assets/img/logo-gopay-vector.png" class="w-8 mr-2" alt="GoPay"> GoPay
-                    </span>
-                    <span class="text-gray-600">Rp1.910</span>
-                </button>
-                <button
-                    class="payment-method w-full flex items-center justify-between p-4 border border-gray-400 rounded-lg hover:bg-gray-100 mt-3"
-                    onclick="selectPayment(this, 'Dana', 2000)">
-                    <span class="flex items-center">
-                        <img src="../assets/img/Logo_dana_blue.svg.png" class="w-8 mr-2" alt="Dana"> Dana
-                    </span>
-                    <span class="text-gray-600">Rp2.000</span>
-                </button>
-                <button
-                    class="payment-method w-full flex items-center justify-between p-4 border border-gray-400 rounded-lg hover:bg-gray-100 mt-3"
-                    onclick="selectPayment(this, 'OVO', 2500)">
-                    <span class="flex items-center">
-                        <img src="../assets/img/logo-ovo-pay.webp" class="w-8 mr-2" alt="OVO"> OVO
-                    </span>
-                    <span class="text-gray-600">Rp2.500</span>
-                </button>
-                <button
-                    class="payment-method w-full flex items-center justify-between p-4 border border-gray-400 rounded-lg hover:bg-gray-100 mt-3"
-                    onclick="selectPayment(this, 'ShopeePay', 1800)">
-                    <span class="flex items-center">
-                        <img src="../assets/img/shopee-pay-logo-png_seeklogo-406839.png" class="w-8 mr-2" alt="ShopeePay"> ShopeePay
-                    </span>
-                    <span class="text-gray-600">Rp1.800</span>
-                </button>
-                <button
-                    class="payment-method w-full flex items-center justify-between p-4 border border-gray-400 rounded-lg hover:bg-gray-100 mt-3"
-                    onclick="selectPayment(this, 'QRIS', 1200)">
-                    <span class="flex items-center">
-                        <img src="../assets/img/quick-response-code-indonesia-standard-qris-logo-png_seeklogo-391791.png"
-                            class="w-8 mr-2" alt="QRIS"> QRIS
-                    </span>
-                    <span class="text-gray-600">Rp1.200</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- ✅ Rincian Biaya -->
-        <div class="bg-white p-6 rounded-lg shadow-lg flex-grow md:w-[500px] md:h-[300px] w-full">
-            <h2 class="text-lg font-semibold text-red-800">Rincian Biaya</h2>
-            <hr class="my-4">
-            <div class="space-y-2">
-                <div class="flex justify-between">
-                    <span>Biaya Sewa</span>
-                    <span id="biaya-sewa">Rp 0</span>
-                </div>
-                <div class="flex justify-between">
-                    <span>Convenience Fee</span>
-                    <span id="convenience-fee">Rp 0</span>
-                </div>
-                <div class="flex justify-between font-bold">
-                    <span>Total Bayar</span>
-                    <span id="total-bayar">Rp 0</span>
-                </div>
-            </div>
-
-            <p class="text-sm text-gray-600 mt-4">
-                Dengan mengklik tombol berikut, Anda menyetujui <a href="#" class="text-red-700 underline">Syarat dan
-                    Ketentuan</a> serta <a href="#" class="text-red-700 underline">Kebijakan Privasi</a>.
-            </p>
-
-            <button id="btnBayar" class="w-full mt-4 bg-gray-400 text-white py-2 rounded-lg cursor-not-allowed"
-                disabled>
-                Lakukan Pembayaran
+            
+            <button id="hamburger" class="md:hidden p-3 text-gray-900 bg-gray-50 rounded-2xl">
+                <i class="ri-menu-5-line"></i>
             </button>
         </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-x-0 top-0 z-40 bg-white shadow-2xl p-10 pt-32 hidden flex-col">
+        <ul class="space-y-6 text-3xl font-black text-gray-900">
+            <li><a href="/index.html">BERANDA</a></li>
+            <li><a href="/pages/PageSewaLapangan.html" class="text-red-800">BOOKING</a></li>
+            <li><a href="/pages/PageBerita.html">ARTIKEL</a></li>
+            <li><a href="/pages/About.html">ABOUT</a></li>
+        </ul>
     </div>
 
+    <main class="max-w-screen-xl mx-auto px-6 pt-40 pb-32">
+        <div class="mb-10">
+            <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-2 uppercase">Checkout</h1>
+            <p class="text-gray-500 font-medium">Pilih metode pembayaran yang paling nyaman untuk Anda.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-10">
+            <!-- Payment Methods -->
+            <div class="lg:col-span-2 space-y-4" id="payment-methods">
+                
+                <div class="payment-method p-6 flex items-center justify-between" onclick="selectPayment(this, 'Virtual Account', 6500)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center">
+                            <i class="ri-bank-card-line text-2xl text-gray-700"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-black text-lg">Virtual Account</h3>
+                            <p class="text-xs font-bold text-gray-400">Transfer bank otomatis</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-bold text-gray-500">+Rp 6.500</span>
+                </div>
+
+                <div class="payment-method p-6 flex items-center justify-between" onclick="selectPayment(this, 'QRIS', 1200)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center p-2">
+                            <img src="/assets/img/quick-response-code-indonesia-standard-qris-logo-png_seeklogo-391791.png" class="object-contain" alt="QRIS">
+                        </div>
+                        <div>
+                            <h3 class="font-black text-lg">QRIS</h3>
+                            <p class="text-xs font-bold text-gray-400">Scan via e-wallet/M-Banking</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-bold text-gray-500">+Rp 1.200</span>
+                </div>
+
+                <div class="payment-method p-6 flex items-center justify-between" onclick="selectPayment(this, 'GoPay', 1910)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center p-2">
+                            <img src="/assets/img/logo-gopay-vector.png" class="object-contain" alt="GoPay">
+                        </div>
+                        <div>
+                            <h3 class="font-black text-lg">GoPay</h3>
+                            <p class="text-xs font-bold text-gray-400">Dompet digital</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-bold text-gray-500">+Rp 1.910</span>
+                </div>
+
+                <div class="payment-method p-6 flex items-center justify-between" onclick="selectPayment(this, 'ShopeePay', 1800)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center p-2">
+                            <img src="/assets/img/shopee-pay-logo-png_seeklogo-406839.png" class="object-contain" alt="ShopeePay">
+                        </div>
+                        <div>
+                            <h3 class="font-black text-lg">ShopeePay</h3>
+                            <p class="text-xs font-bold text-gray-400">Dompet digital</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-bold text-gray-500">+Rp 1.800</span>
+                </div>
+
+            </div>
+
+            <!-- Summary Sidebar -->
+            <div class="relative">
+                <div class="sticky top-32 bg-white border border-gray-100 rounded-[32px] p-8 shadow-2xl shadow-gray-200/50">
+                    <h2 class="text-xl font-black mb-6 border-b border-gray-100 pb-4">Rincian Pembayaran</h2>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-bold text-gray-500">Biaya Sewa & Layanan</span>
+                            <span class="text-sm font-black text-gray-900" id="biaya-sewa">Rp 0</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-bold text-gray-500">Biaya Admin (Metode)</span>
+                            <span class="text-sm font-black text-gray-900" id="convenience-fee">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-100 pt-6 mb-8">
+                        <div class="flex justify-between items-end">
+                            <span class="text-[10px] font-black uppercase tracking-widest text-gray-400">Total Bayar</span>
+                            <span class="text-3xl font-black text-red-700" id="total-bayar">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <p class="text-[10px] font-bold text-gray-400 leading-relaxed mb-6">
+                        Dengan menekan tombol bayar, Anda menyetujui <a href="#" class="text-red-700 hover:underline">Syarat & Ketentuan</a> yang berlaku.
+                    </p>
+
+                    <button id="btnBayar" class="btn-action w-full text-white py-4 rounded-2xl text-xs font-black uppercase tracking-widest" disabled>
+                        Lakukan Pembayaran
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-20 pb-10 bg-white border-t border-gray-100">
+        <div class="max-w-screen-xl mx-auto px-6 text-center">
+            <div class="bg-red-700 w-10 h-10 p-2 rounded-xl mx-auto mb-4">
+                <img src="/assets/img/LOGO SUPER SPORT APP.png" class="h-full object-contain" alt="Logo">
+            </div>
+            <div class="text-[10px] font-black text-gray-300 uppercase tracking-widest">
+                © 2025 SUPER SPORT INDONESIA. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let jadwal = JSON.parse(localStorage.getItem("selectedSchedules")) || [];
-            let biayaSewa = jadwal.reduce((acc, item) => acc + item.harga, 0);
+        // Set initial values
+        let biayaSewaLayanan = parseInt(localStorage.getItem("totalPembayaran")) || 0;
+        document.getElementById("biaya-sewa").textContent = `Rp ${biayaSewaLayanan.toLocaleString("id-ID")}`;
+        document.getElementById("total-bayar").textContent = `Rp ${biayaSewaLayanan.toLocaleString("id-ID")}`;
 
-            document.getElementById("biaya-sewa").textContent = `Rp ${biayaSewa.toLocaleString()}`;
-            document.getElementById("total-bayar").textContent = `Rp ${biayaSewa.toLocaleString()}`;
+        window.selectPayment = function(element, method, fee) {
+            // Update UI selections
+            document.querySelectorAll(".payment-method").forEach(btn => {
+                btn.classList.remove("selected");
+                btn.querySelector('h3').classList.remove("text-red-700");
+            });
+            element.classList.add("selected");
+            element.querySelector('h3').classList.add("text-red-700");
 
-            localStorage.setItem("totalBayar", biayaSewa);
-        });
+            // Update amounts
+            let totalBayar = biayaSewaLayanan + fee;
+            document.getElementById("convenience-fee").textContent = `Rp ${fee.toLocaleString("id-ID")}`;
+            document.getElementById("total-bayar").textContent = `Rp ${totalBayar.toLocaleString("id-ID")}`;
 
-        function selectPayment(button, method, fee) {
-            let biayaSewa = parseInt(localStorage.getItem("totalBayar")) || 0;
-            let totalBayar = biayaSewa + fee;
-
-            document.getElementById("convenience-fee").textContent = `Rp ${fee.toLocaleString()}`;
-            document.getElementById("total-bayar").textContent = `Rp ${totalBayar.toLocaleString()}`;
-
+            // Save state
             localStorage.setItem("selectedPaymentMethod", method);
             localStorage.setItem("convenienceFee", fee);
             localStorage.setItem("totalBayarFinal", totalBayar);
 
-            // Menghapus border merah dari semua tombol pembayaran
-            document.querySelectorAll(".payment-method").forEach(btn => {
-                btn.classList.remove("border-red-800");
-                btn.classList.add("border-gray-400");
-            });
-
-
-            // Menambahkan border merah ke tombol yang dipilih
-            button.classList.remove("border-gray-400");
-            button.classList.add("border-red-800");
-
-            // Aktifkan tombol "Lakukan Pembayaran"
-            let btnBayar = document.getElementById("btnBayar");
-            btnBayar.classList.remove("bg-gray-400", "cursor-not-allowed");
-            btnBayar.classList.add("bg-red-800", "hover:bg-red-900");
+            // Enable button
+            const btnBayar = document.getElementById("btnBayar");
             btnBayar.disabled = false;
-
-            // Tambahkan event listener untuk berpindah halaman saat diklik
-            btnBayar.addEventListener("click", function () {
-                window.location.href = "PageBayarQRIS.html";
-            });
         }
-    </script>
 
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        $(document).ready(function () {
+            // Auth logic
             const isLoggedIn = localStorage.getItem("isLoggedIn");
-            const profileImg = localStorage.getItem("profileImage") || "../assets/img/profile z.jpg";
-            const loginBtn = document.getElementById("login-btn");
-            const profileMenu = document.getElementById("profile-menu");
-            const profileImgTag = document.getElementById("profile-img");
-            const userDropdown = document.getElementById("user-dropdown");
-            const profileIcon = document.getElementById("profile-icon");
-            const logoutBtn = document.getElementById("logout-btn");
-
+            const profileImg = localStorage.getItem("profileImage") || "/assets/img/profile z.jpg";
             if (isLoggedIn === "true") {
-                loginBtn.classList.add("hidden");
-                profileMenu.classList.remove("hidden");
-                profileImgTag.src = profileImg;
+                $("#login-btn").hide();
+                $("#profile-menu").removeClass("hidden");
+                $("#profile-img").attr("src", profileImg);
             }
 
-            // Toggle Dropdown Animation
-            profileIcon.addEventListener("click", function (event) {
-                event.stopPropagation();
-                if (userDropdown.classList.contains("hidden")) {
-                    userDropdown.classList.remove("hidden", "opacity-0", "scale-95");
-                    userDropdown.classList.add("opacity-100", "scale-100");
-                } else {
-                    userDropdown.classList.add("opacity-0", "scale-95");
-                    setTimeout(() => userDropdown.classList.add("hidden"), 200);
-                }
-            });
-
-            // Close dropdown when clicking outside
-            document.addEventListener("click", function (event) {
-                if (!profileMenu.contains(event.target)) {
-                    userDropdown.classList.add("opacity-0", "scale-95");
-                    setTimeout(() => userDropdown.classList.add("hidden"), 200);
-                }
-            });
-
-            // Logout Function
-            logoutBtn.addEventListener("click", function () {
-                localStorage.removeItem("isLoggedIn");
-                localStorage.removeItem("profileImage");
-
-                // Redirect ke Home.html setelah logout
-                window.location.href = "Home.html";
-            });
-        });
-        $(document).ready(function () {
-            // Toggle Dropdown Menu
-            $("#user-menu-button").click(function () {
+            $("#hamburger").click(() => $("#mobile-menu").toggleClass("hidden flex"));
+            $("#profile-icon").click((e) => {
+                e.stopPropagation();
                 $("#user-dropdown").toggleClass("hidden");
             });
-
-            $(document).ready(function () {
-                $("#hamburger").click(function () {
-                    $("#mobile-menu").slideToggle();
-                });
+            $(document).click(() => $("#user-dropdown").addClass("hidden"));
+            $("#logout-btn").click(() => {
+                localStorage.removeItem("isLoggedIn");
+                window.location.href = "/index.html";
             });
 
-            // Tutup dropdown saat klik di luar area
-            $(document).click(function (event) {
-                if (!$(event.target).closest("#user-menu-button, #user-dropdown").length) {
-                    $("#user-dropdown").addClass("hidden");
+            $("#btnBayar").click(function () {
+                const method = localStorage.getItem("selectedPaymentMethod");
+                if (method === "QRIS") {
+                    window.location.href = "/pages/PageBayarQRIS.html";
+                } else {
+                    // For now, other methods also redirect to QRIS page or Success page
+                    window.location.href = "/pages/PageBayarQRIS.html";
                 }
-            });
-            // Toggle Mobile Menu
-            $("[data-collapse-toggle]").click(function () {
-                $("#navbar-user").toggleClass("hidden");
             });
         });
     </script>
 </body>
-
 </html>

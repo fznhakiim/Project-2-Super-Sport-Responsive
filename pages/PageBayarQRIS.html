@@ -1,346 +1,432 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pembayaran QRIS</title>
+    <title>Selesaikan Pembayaran | Super Sport App</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <link rel="shortcut icon" type="x-icon" href="LOGO SUPER SPORT APP.png">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <link rel="shortcut icon" type="x-icon" href="/assets/img/LOGO SUPER SPORT APP.png">
+
     <style>
         :root {
-            --bg-color: #F8F9FC;
-            --main-color: #C00000;
-            --text-color: #212121;
-            --second-color: #DE3C3C;
-            --third-color: #F7B32D;
+            --primary: #CC0000;
+            --primary-dark: #A10000;
+            --surface: #FFFFFF;
+            --surface-alt: #F9F9F9;
+            --text-main: #111111;
+            --text-muted: #888888;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
         }
 
-        #mobile-menu {
-            position: fixed;
-            top: 4rem;
-            /* Pastikan sejajar dengan navbar */
-            left: 0;
-            width: 100%;
-            background-color: white;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            display: none;
-            z-index: 50;
+        body {
+            font-family: var(--font-main);
+            background-color: var(--surface-alt);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .card-premium {
+            background: white;
+            border-radius: 32px;
+            border: 1px solid #F0F0F0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.02);
+        }
+
+        .btn-action {
+            background: var(--primary);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .btn-action:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(204, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            border: 2px solid #E5E7EB;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+        
+        .btn-outline:hover {
+            border-color: #D1D5DB;
+            background: #F3F4F6;
+        }
+
+        .accordion-content {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        
+        .accordion-content.active {
+            max-height: 500px;
+            opacity: 1;
         }
     </style>
 </head>
 
-<!-- Mobile Menu -->
-<nav id="mobile-menu" class="absolute left-0 w-full bg-white shadow-md p-4 md:hidden">
-    <a href="../index.html" class="block py-2 border-b">Home</a>
-    <a href="PageSewaLapangan.html" class="block py-2 border-b">Sewa Lapangan</a>
-    <a href="PageBerita.html" class="block py-2 border-b">Blog</a>
-    <a href="About.html" class="block py-2 border-b">About</a>
-    <button class="w-full py-2 border mt-2 rounded border-gray-400 hover:bg-gray-200"
-        onclick="window.location.href='Login.html';">
-        Masuk
-    </button>
-
-    <button class="w-full py-2 bg-red-600 text-white rounded mt-2 hover:bg-red-800"
-        onclick="window.location.href='Register.html';">
-        Daftar
-    </button>
-</nav>
-
-<!-- Dropdown menu -->
-<div id="dropdownMenu"
-    class="hidden absolute mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-64 dark:bg-gray-700">
-    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
-        <li>
-            <a href="PageSewaLapangan.html"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sewa Lapangan</a>
-        </li>
-        <li>
-            <a href="PageBerita.html"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Blog</a>
-        </li>
-        <li>
-            <a href="ContactUs.html"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Contact Us</a>
-        </li>
-        <li>
-            <a href="About.html"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">About Us</a>
-        </li>
-    </ul>
-</div>
-</div>
-
-<body class="bg-gray-100">
-    <div class="max-w-6xl mx-auto mt-6 p-4">
-        <h1 class="text-xl font-semibold">Detail Order • Booking Venue</h1>
-
-        <!-- ✅ Layout Grid -->
-        <div class="grid md:grid-cols-3 gap-6 mt-4">
-            <!-- ✅ Bagian Kiri (Detail Pembayaran) -->
-            <div class="md:col-span-2 space-y-4">
-                <!-- Status Pembayaran -->
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <div class="flex items-center space-x-2 text-red-700 font-semibold">
-                        <span>Menunggu Pembayaran</span>
-                    </div>
-                    <p class="text-gray-600">Selesaikan pembayaran dalam <span class="text-red-600 font-bold"
-                            id="countdown">00:30:00</span></p>
-
-                    <!-- QRIS -->
-                    <div class="mt-4">
-                        <span class="font-semibold">QRIS</span>
-                        <div class="flex justify-center mt-2">
-                            <img id="qr-image" src="../assets/img/qr.png" alt="QR Code" class="w-40">
-                        </div>
-                        <a id="download-qr" class="block text-center text-red-600 mt-2 cursor-pointer underline">Unduh
-                            QR Code</a>
-                    </div>
+<body>
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 py-5 nav-glass" id="header">
+        <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between">
+            <a href="/index.html" class="flex items-center gap-4">
+                <div class="bg-red-700 p-2 rounded-xl">
+                    <img src="/assets/img/LOGO SUPER SPORT APP.png" class="h-6" alt="Logo">
                 </div>
+                <span class="text-xl font-black tracking-tighter uppercase">Super Sport</span>
+            </a>
 
-                <!-- ✅ Rincian Pembayaran -->
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <div class="flex items-center space-x-2 text-red-700 font-semibold">
-                        <span>Rincian Pembayaran</span>
-                    </div>
-
-                    <div class="mt-2">
-                        <ul id="jadwal-list" class="text-gray-700 mt-1"></ul>
-
-                        <div class="flex justify-between font-semibold mt-2">
-                            <span>Biaya Sewa</span>
-                            <span id="biaya-sewa">Rp 0</span>
-                        </div>
-
-                        <div class="flex justify-between font-semibold mt-2">
-                            <span>Convenience Fee</span>
-                            <span id="convenience-fee">Rp 0</span>
-                        </div>
-
-                        <div class="flex justify-between font-semibold mt-2">
-                            <span>Total</span>
-                            <span id="total-bayar">Rp 0</span>
+            <div class="hidden md:flex items-center gap-12">
+                <ul class="flex gap-10 text-[10px] font-black tracking-widest uppercase">
+                    <li><a href="/index.html" class="hover:text-red-700 transition-colors">Beranda</a></li>
+                    <li><a href="/pages/PageSewaLapangan.html" class="text-red-700 font-bold">Booking</a></li>
+                    <li><a href="/pages/PageBerita.html" class="hover:text-red-700 transition-colors">Artikel</a></li>
+                    <li><a href="/pages/About.html" class="hover:text-red-700 transition-colors">Tentang</a></li>
+                </ul>
+                <div id="auth-ui">
+                    <button id="login-btn" onclick="window.location.href='/pages/Login.html'" class="text-[10px] font-black uppercase tracking-widest bg-gray-900 text-white px-8 py-3 rounded-xl hover:bg-red-700 transition-all">Sign In</button>
+                    
+                    <div id="profile-menu" class="hidden relative">
+                        <button id="profile-icon" class="w-10 h-10 rounded-xl border-2 border-red-700 p-0.5">
+                            <img id="profile-img" src="/assets/img/profile z.jpg" class="w-full h-full object-cover rounded-lg">
+                        </button>
+                        <div id="user-dropdown" class="hidden absolute right-0 mt-4 w-52 bg-white rounded-2xl shadow-2xl border border-gray-100 p-2">
+                            <a href="/pages/Profile.html" class="block px-4 py-3 text-sm font-bold text-gray-700 hover:bg-red-50 rounded-xl">Profil</a>
+                            <button id="logout-btn" class="w-full text-left px-4 py-3 text-sm font-bold text-red-600 hover:bg-red-50 rounded-xl">Logout</button>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            <button id="hamburger" class="md:hidden p-3 text-gray-900 bg-gray-50 rounded-2xl">
+                <i class="ri-menu-5-line"></i>
+            </button>
+        </div>
+    </nav>
 
-            <!-- ✅ Side Card tetap di kanan -->
-            <div class="space-y-4">
-                <!-- Cara Bayar -->
-                <div class="bg-white p-6 rounded-lg shadow-lg">
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-x-0 top-0 z-40 bg-white shadow-2xl p-10 pt-32 hidden flex-col">
+        <ul class="space-y-6 text-3xl font-black text-gray-900">
+            <li><a href="/index.html">BERANDA</a></li>
+            <li><a href="/pages/PageSewaLapangan.html" class="text-red-800">BOOKING</a></li>
+            <li><a href="/pages/PageBerita.html">ARTIKEL</a></li>
+            <li><a href="/pages/About.html">ABOUT</a></li>
+        </ul>
+    </div>
+
+    <main class="max-w-5xl mx-auto px-6 pt-40 pb-32">
+        <div class="mb-10 text-center">
+            <h1 class="text-4xl font-black tracking-tighter mb-2 uppercase">Selesaikan Pembayaran</h1>
+            <p class="text-gray-500 font-medium">Selesaikan pembayaran Anda sebelum waktu habis.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-10">
+            <!-- Left: QRIS Info -->
+            <div class="space-y-6">
+                <!-- Timer Card -->
+                <div class="card-premium p-8 text-center bg-white border border-red-100 shadow-xl shadow-red-500/5">
+                    <p class="text-[10px] font-black tracking-widest text-gray-400 uppercase mb-2">Sisa Waktu Pembayaran</p>
+                    <div class="text-5xl font-black text-red-700 font-mono tracking-tighter mb-6" id="countdown">03:00</div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-[24px] inline-block mx-auto mb-6">
+                        <img id="qr-image" src="/assets/img/qr.png" alt="QR Code" class="w-48 h-48 object-contain">
+                    </div>
+                    
+                    <div>
+                        <a id="download-qr" class="inline-flex items-center text-xs font-black uppercase tracking-widest text-red-700 hover:text-gray-900 transition-colors cursor-pointer">
+                            <i class="ri-download-2-fill mr-2"></i> Unduh QR Code
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Instructions Card -->
+                <div class="card-premium p-8">
                     <div class="flex items-center justify-between cursor-pointer" onclick="toggleCaraBayar()">
-                        <span class="font-semibold text-red-700">Cara Bayar</span>
-                        <button class="text-gray-500 transition-transform transform duration-300" id="arrow">▼</button>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center">
+                                <i class="ri-question-line text-xl text-gray-700"></i>
+                            </div>
+                            <h3 class="font-black text-lg">Cara Pembayaran</h3>
+                        </div>
+                        <i id="arrow" class="ri-arrow-down-s-line text-2xl text-gray-400 transition-transform"></i>
                     </div>
-                    <div id="cara-bayar"
-                        class="mt-2 text-gray-600 overflow-hidden transition-all duration-300 ease-out max-h-0">
-                        <p>1. Buka aplikasi pihak ketiga yang memiliki fitur scan QRIS</p>
-                        <p>2. Scan barcode tertera pada halaman ini</p>
-                        <p>3. Pastikan nama merchant sesuai</p>
-                        <p>4. Pastikan nominal telah sesuai lalu konfirmasi bayar</p>
+                    <div id="cara-bayar" class="accordion-content mt-4">
+                        <ul class="space-y-4 text-sm font-bold text-gray-500">
+                            <li class="flex items-start">
+                                <span class="w-6 h-6 rounded-full bg-red-50 text-red-700 flex items-center justify-center text-[10px] mr-3 shrink-0">1</span>
+                                Buka aplikasi m-banking atau e-wallet (GoPay, OVO, Dana, ShopeePay, dll).
+                            </li>
+                            <li class="flex items-start">
+                                <span class="w-6 h-6 rounded-full bg-red-50 text-red-700 flex items-center justify-center text-[10px] mr-3 shrink-0">2</span>
+                                Pilih menu Scan QRIS / Bayar.
+                            </li>
+                            <li class="flex items-start">
+                                <span class="w-6 h-6 rounded-full bg-red-50 text-red-700 flex items-center justify-center text-[10px] mr-3 shrink-0">3</span>
+                                Scan QR Code di atas atau upload dari galeri jika Anda mengunduhnya.
+                            </li>
+                            <li class="flex items-start">
+                                <span class="w-6 h-6 rounded-full bg-red-50 text-red-700 flex items-center justify-center text-[10px] mr-3 shrink-0">4</span>
+                                Pastikan nominal sesuai dengan total tagihan, lalu konfirmasi pembayaran.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Details and Actions -->
+            <div class="space-y-6">
+                <!-- Payment Breakdown -->
+                <div class="card-premium p-8">
+                    <h3 class="font-black text-xl mb-6 pb-4 border-b border-gray-100">Rincian Order</h3>
+                    
+                    <div class="space-y-4 mb-6" id="jadwal-list">
+                        <!-- Dynamic schedule list will appear here -->
+                    </div>
+
+                    <div class="bg-gray-50 rounded-2xl p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm font-bold text-gray-500">Biaya Sewa</span>
+                            <span class="text-sm font-black text-gray-900" id="biaya-sewa">Rp 0</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-4 pb-4 border-b border-gray-200">
+                            <span class="text-sm font-bold text-gray-500" id="payment-method-name">Admin Fee</span>
+                            <span class="text-sm font-black text-gray-900" id="convenience-fee">Rp 0</span>
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <span class="text-[10px] font-black uppercase tracking-widest text-gray-400">Total Pembayaran</span>
+                            <span class="text-3xl font-black text-red-700" id="total-bayar">Rp 0</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- ✅ Tombol Aksi -->
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <button id="cek-status-button"
-                        class="w-full bg-red-700 text-white py-2 rounded-lg hover:bg-red-800"> Cek Status Pembayaran
+                <!-- Actions -->
+                <div class="card-premium p-8">
+                    <button id="cek-status-button" class="btn-action w-full text-white py-4 rounded-2xl text-xs font-black uppercase tracking-widest mb-3">
+                        Cek Status Pembayaran
                     </button>
-                    <button class="w-full bg-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-400 mt-2">Batalkan
-                        Transaksi</button>
-                    <button
-                        class="w-full bg-gray-100 text-gray-700 py-2 rounded-lg hover:bg-gray-200 mt-2">Bantuan</button>
-                    <p class="text-gray-600 text-center mt-4 text-sm">Waktu Operasional Customer Service: Senin - Jumat
-                        09:00 - 21:00 WIB</p>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button class="btn-outline w-full py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest text-gray-600">
+                            Bantuan
+                        </button>
+                        <button class="btn-outline w-full py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest text-red-700 border-red-100 bg-red-50 hover:bg-red-100">
+                            Batalkan
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
+    </main>
 
+    <!-- Overlay & Modal for Timeout -->
+    <div id="overlay" class="fixed inset-0 bg-gray-900/80 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity"></div>
+    <div id="modal-pembayaran-gagal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 hidden opacity-0 transition-opacity w-full max-w-sm">
+        <div class="bg-white p-10 rounded-[32px] shadow-2xl text-center">
+            <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="ri-close-circle-fill text-4xl text-red-700"></i>
+            </div>
+            <h2 class="text-2xl font-black mb-2">Pembayaran Gagal</h2>
+            <p class="text-gray-500 font-medium text-sm mb-8">Waktu pembayaran Anda telah habis. Silakan ulangi proses booking.</p>
+            <button id="close-modal" class="btn-action w-full text-white py-4 rounded-2xl text-xs font-black uppercase tracking-widest">
+                Kembali ke Beranda
+            </button>
+        </div>
+    </div>
 
-        <!-- Overlay untuk modal -->
-        <div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50"></div>
-
-        <!-- Modal -->
-        <div id="modal-pembayaran-gagal" class="hidden fixed inset-0 flex items-center justify-center z-50">
-            <div class="bg-white p-6 rounded-lg shadow-lg text-center max-w-md">
-                <h2 class="text-xl font-semibold text-red-700">Pembayaran Gagal</h2>
-                <p class="text-gray-600 mt-2">Waktu pembayaran telah habis. Silakan coba kembali.</p>
-                <button id="close-modal" class="mt-4 bg-red-700 text-white px-4 py-2 rounded hover:bg-red-800">
-                    Kembali ke Home
-                </button>
+    <!-- Footer -->
+    <footer class="pt-20 pb-10 bg-white border-t border-gray-100">
+        <div class="max-w-screen-xl mx-auto px-6 text-center">
+            <div class="bg-red-700 w-10 h-10 p-2 rounded-xl mx-auto mb-4">
+                <img src="/assets/img/LOGO SUPER SPORT APP.png" class="h-full object-contain" alt="Logo">
+            </div>
+            <div class="text-[10px] font-black text-gray-300 uppercase tracking-widest">
+                © 2025 SUPER SPORT INDONESIA. ALL RIGHTS RESERVED.
             </div>
         </div>
+    </footer>
 
+    <script>
+        // Modal Logic
+        function showFailureModal() {
+            const overlay = document.getElementById("overlay");
+            const modal = document.getElementById("modal-pembayaran-gagal");
+            
+            overlay.classList.remove("hidden");
+            modal.classList.remove("hidden");
+            
+            // Trigger reflow
+            void overlay.offsetWidth;
+            
+            overlay.classList.add("opacity-100");
+            modal.classList.add("opacity-100");
+            
+            localStorage.removeItem("paymentExpirationTime");
+        }
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                let jadwal = JSON.parse(localStorage.getItem("selectedSchedules")) || [];
-                let biayaSewa = parseInt(localStorage.getItem("totalBayar")) || 0;
-                let convenienceFee = parseInt(localStorage.getItem("convenienceFee")) || 0;
-                let totalBayarFinal = parseInt(localStorage.getItem("totalBayarFinal")) || biayaSewa;
+        // Timer Logic
+        let timer;
+        function startCountdown() {
+            let storedExpiration = localStorage.getItem("paymentExpirationTime");
+            let expirationTime;
 
-                console.log("Jadwal dari localStorage:", jadwal);
-                console.log("Biaya Sewa:", biayaSewa);
-                console.log("Convenience Fee:", convenienceFee);
-                console.log("Total Bayar Final:", totalBayarFinal);
+            if (storedExpiration) {
+                expirationTime = parseInt(storedExpiration);
+            } else {
+                expirationTime = Date.now() + 3 * 60 * 1000; // 3 minutes
+                localStorage.setItem("paymentExpirationTime", expirationTime);
+            }
 
-                let jadwalList = document.getElementById("jadwal-list");
+            const countdownElement = document.getElementById("countdown");
 
-                if (jadwal.length === 0) {
-                    let li = document.createElement("li");
-                    li.textContent = "Tidak ada jadwal terpilih.";
-                    li.classList.add("text-gray-500");
-                    jadwalList.appendChild(li);
-                } else {
-                    jadwal.forEach(item => {
-                        if (item.namaLapangan && item.harga) {
-                            let li = document.createElement("li");
-                            li.textContent = `📍 ${item.namaLapangan} - Rp ${item.harga.toLocaleString()}`;
-                            jadwalList.appendChild(li);
-                        }
-                    });
+            function updateCountdown() {
+                let now = Date.now();
+                let remainingTime = expirationTime - now;
+
+                if (remainingTime <= 0) {
+                    countdownElement.textContent = "00:00";
+                    clearInterval(timer);
+                    showFailureModal();
+                    return;
                 }
 
-                // ✅ Pastikan elemen ada sebelum mengupdate isinya
-                if (document.getElementById("biaya-sewa")) {
-                    document.getElementById("biaya-sewa").textContent = `Rp ${biayaSewa.toLocaleString()}`;
-                }
-                if (document.getElementById("convenience-fee")) {
-                    document.getElementById("convenience-fee").textContent = `Rp ${convenienceFee.toLocaleString()}`;
-                }
-                if (document.getElementById("total-bayar")) {
-                    document.getElementById("total-bayar").textContent = `Rp ${totalBayarFinal.toLocaleString()}`;
-                }
-            });
+                let minutes = Math.floor(remainingTime / 60000);
+                let seconds = Math.floor((remainingTime % 60000) / 1000);
 
-            // ✅ Unduh QR Code
-            document.getElementById("download-qr").addEventListener("click", function () {
+                countdownElement.textContent = 
+                    (minutes < 10 ? "0" : "") + minutes + ":" + 
+                    (seconds < 10 ? "0" : "") + seconds;
+            }
+
+            timer = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        }
+
+        // Accordion Toggle
+        window.toggleCaraBayar = function() {
+            const content = document.getElementById("cara-bayar");
+            const arrow = document.getElementById("arrow");
+            
+            content.classList.toggle("active");
+            if (content.classList.contains("active")) {
+                arrow.style.transform = "rotate(180deg)";
+            } else {
+                arrow.style.transform = "rotate(0)";
+            }
+        }
+
+        $(document).ready(function () {
+            // Setup UI Data
+            let jadwal = JSON.parse(localStorage.getItem("selectedSchedules")) || [];
+            let biayaSewa = parseInt(localStorage.getItem("totalBayar")) || 0;
+            // Fallback calculation if totalBayar is missing
+            if (biayaSewa === 0 && jadwal.length > 0) {
+                biayaSewa = jadwal.reduce((acc, item) => acc + item.harga, 0) + 2500; // Adding base service fee from previous page
+            }
+
+            let convenienceFee = parseInt(localStorage.getItem("convenienceFee")) || 0;
+            let totalBayarFinal = parseInt(localStorage.getItem("totalBayarFinal")) || (biayaSewa + convenienceFee);
+            let paymentMethod = localStorage.getItem("selectedPaymentMethod") || "Metode Pembayaran";
+
+            // Render Schedule
+            const jadwalList = document.getElementById("jadwal-list");
+            if (jadwal.length === 0) {
+                jadwalList.innerHTML = `<div class="text-sm font-bold text-gray-400">Tidak ada jadwal terpilih.</div>`;
+            } else {
+                jadwal.forEach(item => {
+                    if (item.waktu && item.harga) {
+                        jadwalList.innerHTML += `
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-red-700"></div>
+                                    <span class="text-sm font-bold text-gray-700">GOR Sigma - Lapangan 1 (${item.waktu})</span>
+                                </div>
+                                <span class="text-xs font-bold text-gray-400">Rp ${item.harga.toLocaleString("id-ID")}</span>
+                            </div>
+                        `;
+                    }
+                });
+            }
+
+            document.getElementById("biaya-sewa").textContent = `Rp ${biayaSewa.toLocaleString("id-ID")}`;
+            document.getElementById("convenience-fee").textContent = `Rp ${convenienceFee.toLocaleString("id-ID")}`;
+            document.getElementById("total-bayar").textContent = `Rp ${totalBayarFinal.toLocaleString("id-ID")}`;
+            document.getElementById("payment-method-name").textContent = `Biaya Admin (${paymentMethod})`;
+
+            // Start Timer
+            startCountdown();
+
+            // Interactions
+            $("#download-qr").click(function () {
                 let qrImage = document.getElementById("qr-image").src;
                 let link = document.createElement("a");
                 link.href = qrImage;
-                link.download = "quick-response-code-indonesia-standard-qris-logo-png_seeklogo-391791.png";
+                link.download = "QRIS_SuperSport.png";
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
             });
 
+            $("#close-modal").click(function () {
+                window.location.href = "/index.html";
+            });
 
-            // ✅ Toggle Dropdown "Cara Bayar" dengan animasi smooth
-            function toggleCaraBayar() {
-                let caraBayar = document.getElementById("cara-bayar");
-                let arrow = document.getElementById("arrow");
+            $("#cek-status-button").click(function () {
+                clearInterval(timer);
+                localStorage.removeItem("paymentExpirationTime");
+                // Intentionally keeping booking details in localStorage for the success page to display
+                
+                // Show loading state
+                const btn = $(this);
+                const originalText = btn.html();
+                btn.html('<i class="ri-loader-4-line animate-spin text-xl"></i>');
+                btn.prop('disabled', true);
+                
+                setTimeout(() => {
+                    window.location.href = "/pages/PagePembayaranBerhasil.html";
+                }, 1000);
+            });
 
-                if (caraBayar.classList.contains("max-h-0")) {
-                    caraBayar.classList.remove("max-h-0");
-                    caraBayar.classList.add("max-h-40"); // Menampilkan dengan animasi
-                    arrow.classList.add("rotate-180");
-                } else {
-                    caraBayar.classList.remove("max-h-40");
-                    caraBayar.classList.add("max-h-0");
-                    arrow.classList.remove("rotate-180");
-                }
+            // Auth Logic
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+            const profileImg = localStorage.getItem("profileImage") || "/assets/img/profile z.jpg";
+            if (isLoggedIn === "true") {
+                $("#login-btn").hide();
+                $("#profile-menu").removeClass("hidden");
+                $("#profile-img").attr("src", profileImg);
             }
 
-            document.addEventListener("DOMContentLoaded", function () {
-                let countdownElement = document.getElementById("countdown");
-                let modal = document.getElementById("modal-pembayaran-gagal");
-                let overlay = document.getElementById("overlay");
-                let timer; // Simpan timer di variabel global biar bisa di-clear
-
-                function startCountdown() {
-                    let storedExpiration = localStorage.getItem("paymentExpirationTime");
-                    let expirationTime;
-
-                    if (storedExpiration) {
-                        expirationTime = parseInt(storedExpiration);
-                    } else {
-                        expirationTime = Date.now() + 3 * 60 * 1000; // 3 menit dari sekarang
-                        localStorage.setItem("paymentExpirationTime", expirationTime);
-                    }
-
-                    function updateCountdown() {
-                        let now = Date.now();
-                        let remainingTime = expirationTime - now;
-
-                        if (remainingTime <= 0) {
-                            countdownElement.textContent = "00:00";
-                            clearInterval(timer);
-                            showFailureModal();
-                            return;
-                        }
-
-                        let minutes = Math.floor(remainingTime / 60000);
-                        let seconds = Math.floor((remainingTime % 60000) / 1000);
-
-                        countdownElement.textContent =
-                            (minutes < 10 ? "0" : "") + minutes + ":" +
-                            (seconds < 10 ? "0" : "") + seconds;
-                    }
-
-                    timer = setInterval(updateCountdown, 1000);
-                    updateCountdown(); // Jalankan segera untuk menghindari delay awal
-                }
-
-                function showFailureModal() {
-                    modal.classList.remove("hidden");
-                    overlay.classList.remove("hidden");
-                    localStorage.removeItem("paymentExpirationTime"); // Hapus timer setelah gagal
-                }
-
-                document.getElementById("close-modal").addEventListener("click", function () {
-                    window.location.href = "Home.html"; // Redirect ke halaman home
-                });
-
-                // ✅ Fungsi ketika tombol "Cek Status Pembayaran" ditekan
-                document.getElementById("cek-status-button").addEventListener("click", function () {
-                    clearInterval(timer); // Hentikan countdown
-                    localStorage.removeItem("paymentExpirationTime");
-                    localStorage.removeItem("selectedSchedules");
-                    localStorage.removeItem("totalBayar");
-                    localStorage.removeItem("convenienceFee");
-                    localStorage.removeItem("totalBayarFinal");
-
-                    window.location.href = "Home.html"; // Langsung redirect ke halaman utama tanpa alert
-                });
-
-                startCountdown();
+            $("#hamburger").click(() => $("#mobile-menu").toggleClass("hidden flex"));
+            $("#profile-icon").click((e) => {
+                e.stopPropagation();
+                $("#user-dropdown").toggleClass("hidden");
             });
-        </script>
-
-        <script>
-            $(document).ready(function () {
-                // Toggle Dropdown Menu
-                $("#user-menu-button").click(function () {
-                    $("#user-dropdown").toggleClass("hidden");
-                });
-
-                // Toggle Mobile Menu
-                $("#hamburger").click(function () {
-                    $("#mobile-menu").slideToggle();
-                });
-
-                // Tutup dropdown saat klik di luar area
-                $(document).click(function (event) {
-                    if (!$(event.target).closest("#user-menu-button, #user-dropdown").length) {
-                        $("#user-dropdown").addClass("hidden");
-                    }
-                });
-
-                // Toggle Navbar User
-                $("[data-collapse-toggle]").click(function () {
-                    $("#navbar-user").toggleClass("hidden");
-                });
-
-                // ✅ Navigasi ke "PagePembayaranBerhasil"
-                $("#cek-status-button").click(function () {
-                    window.location.href = "PagePembayaranBerhasil.html"; // Sesuaikan dengan path file
-                });
+            $(document).click(() => $("#user-dropdown").addClass("hidden"));
+            $("#logout-btn").click(() => {
+                localStorage.removeItem("isLoggedIn");
+                window.location.href = "/index.html";
             });
-        </script>
+        });
+    </script>
+</body>
+</html>

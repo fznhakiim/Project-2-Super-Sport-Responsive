@@ -1,346 +1,382 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Super Sport App</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-  <link rel="shortcut icon" type="x-icon" href="LOGO SUPER SPORT APP.png">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.12.0/cdn.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya | Super Sport App</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.12.0/cdn.min.js"></script>
+    
+    <link rel="shortcut icon" type="x-icon" href="/assets/img/LOGO SUPER SPORT APP.png">
 
-  <style>
-    :root {
-      --bg-color: #F8F9FC;
-      --main-color: #C00000;
-      --text-color: #212121;
-      --second-color: #9E0620;
-      --third-color: #F7B32D;
-    }
+    <style>
+        :root {
+            --primary: #CC0000;
+            --primary-dark: #A10000;
+            --surface: #FFFFFF;
+            --surface-alt: #F9F9F9;
+            --text-main: #111111;
+            --text-muted: #888888;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+        }
 
-    #mobile-menu {
-      position: fixed;
-      top: 4rem;
-      /* Pastikan sejajar dengan navbar */
-      left: 0;
-      width: 100%;
-      background-color: white;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-      display: none;
-      z-index: 50;
-    }
-  </style>
+        body {
+            font-family: var(--font-main);
+            background-color: var(--surface-alt);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .dashboard-card {
+            background: white;
+            border-radius: 32px;
+            border: 1px solid #F0F0F0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.02);
+        }
+
+        .input-premium {
+            width: 100%;
+            background: #F9F9F9;
+            border: 2px solid transparent;
+            border-radius: 16px;
+            padding: 1rem 1.25rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-premium:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 10px 20px rgba(204, 0, 0, 0.05);
+        }
+
+        .input-premium:read-only {
+            background: #F3F4F6;
+            color: #9CA3AF;
+            cursor: not-allowed;
+        }
+
+        .btn-action {
+            background: var(--primary);
+            color: white;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .btn-action:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(204, 0, 0, 0.2);
+        }
+
+        .tab-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .tab-btn:not(.active):hover {
+            background: #F3F4F6;
+        }
+    </style>
 </head>
 
-<body style="background-color: var(--bg-color); color: var(--text-color);">
-  <nav class="bg-white border-gray-200 dark:bg-gray-900 sticky top-0 z-50">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <a href="../index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <img src="../assets/img/LOGO SUPER SPORT APP.png" class="h-8" alt="Flowbite Logo" />
-        <span class="self-center text-xl font-semibold whitespace-nowrap text-red-800">Super Sport App</span>
-      </a>
+<body>
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 py-5 nav-glass" id="header">
+        <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between">
+            <a href="/index.html" class="flex items-center gap-4">
+                <div class="bg-red-700 p-2 rounded-xl">
+                    <img src="/assets/img/LOGO SUPER SPORT APP.png" class="h-6" alt="Logo">
+                </div>
+                <span class="text-xl font-black tracking-tighter uppercase">Super Sport</span>
+            </a>
 
-      <!-- Login Button or Profile Icon -->
-      <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-        <button id="login-btn" type="button" onclick="window.location.href='Login.html';"
-          class="text-white bg-red-800 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
-          Login
-        </button>
-
-        <!-- Profile Icon (Hidden by Default) -->
-        <div id="profile-menu" class="hidden relative">
-          <button id="profile-icon" class="w-10 h-10 rounded-full bg-gray-300 overflow-hidden focus:outline-none">
-            <img id="profile-img" src="../assets/img/profile z.jpg" alt="Profile">
-          </button>
-
-          <!-- Dropdown Menu -->
-          <div id="user-dropdown"
-            class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 transition-all duration-300 opacity-0 scale-95">
-            <a href="Profile.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</a>
-            <button id="logout-btn" class="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">Keluar</button>
-          </div>
-        </div>
-
-        <button id="hamburger" type="button"
-          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden">
-          <span class="sr-only">Open menu</span>
-          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M1 1h15M1 7h15M1 13h15" />
-          </svg>
-        </button>
-      </div>
-
-      <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-        <ul
-          class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-          <li>
-            <a href="../index.html"
-              class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
-          </li>
-          <li>
-            <a href="PageSewaLapangan.html"
-              class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sewa
-              Lapangan</a>
-          </li>
-          <li>
-            <a href="PageBerita.html"
-              class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Blog</a>
-          </li>
-          <li>
-            <a href="About.html"
-              class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About
-              Us</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Mobile Menu -->
-  <nav id="mobile-menu" class="absolute left-0 w-full bg-white shadow-md p-4 md:hidden">
-    <a href="../index.html" class="block py-2 border-b">Home</a>
-    <a href="PageSewaLapangan.html" class="block py-2 border-b">Sewa Lapangan</a>
-    <a href="PageBerita.html" class="block py-2 border-b">Blog</a>
-    <a href="About.html" class="block py-2 border-b">About</a>
-  </nav>
-
-
-  <!-- Container -->
-  <div class="flex flex-col items-center justify-center flex-grow pt-24 w-full px-4">
-    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-3xl flex flex-col md:flex-row" x-data="{ tab: 'data' }">
-
-      <!-- Sidebar -->
-      <div class="w-full md:w-1/3 border-b md:border-b-0 md:border-r pr-4 pb-4 md:pb-0">
-        <ul class="space-y-4">
-          <li>
-            <button @click="tab = 'data'"
-              class="w-full text-left font-semibold text-gray-700 hover:text-red-700 transition"
-              :class="{ 'text-red-700': tab === 'data' }">
-              Data Diri
+            <div class="hidden md:flex items-center gap-12">
+                <ul class="flex gap-10 text-[10px] font-black tracking-widest uppercase">
+                    <li><a href="/index.html" class="hover:text-red-700 transition-colors">Beranda</a></li>
+                    <li><a href="/pages/PageSewaLapangan.html" class="hover:text-red-700 transition-colors">Booking</a></li>
+                    <li><a href="/pages/PageBerita.html" class="hover:text-red-700 transition-colors">Artikel</a></li>
+                    <li><a href="/pages/About.html" class="hover:text-red-700 transition-colors">Tentang</a></li>
+                </ul>
+                <div id="auth-ui">
+                    <button id="login-btn" onclick="window.location.href='/pages/Login.html'" class="text-[10px] font-black uppercase tracking-widest bg-gray-900 text-white px-8 py-3 rounded-xl hover:bg-red-700 transition-all">Sign In</button>
+                    
+                    <div id="profile-menu" class="hidden relative">
+                        <button id="profile-icon" class="w-10 h-10 rounded-xl border-2 border-red-700 p-0.5">
+                            <img id="profile-img" src="/assets/img/profile z.jpg" class="w-full h-full object-cover rounded-lg">
+                        </button>
+                        <div id="user-dropdown" class="hidden absolute right-0 mt-4 w-52 bg-white rounded-2xl shadow-2xl border border-gray-100 p-2">
+                            <a href="/pages/Profile.html" class="block px-4 py-3 text-sm font-bold text-red-700 bg-red-50 rounded-xl">Profil</a>
+                            <button id="logout-btn" class="w-full text-left px-4 py-3 text-sm font-bold text-red-600 hover:bg-red-50 rounded-xl">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="hamburger" class="md:hidden p-3 text-gray-900 bg-gray-50 rounded-2xl">
+                <i class="ri-menu-5-line"></i>
             </button>
-          </li>
-          <li>
-            <button @click="tab = 'password'"
-              class="w-full text-left font-semibold text-gray-700 hover:text-red-700 transition"
-              :class="{ 'text-red-700': tab === 'password' }">
-              Ubah Kata Sandi
-            </button>
-          </li>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-x-0 top-0 z-40 bg-white shadow-2xl p-10 pt-32 hidden flex-col">
+        <ul class="space-y-6 text-3xl font-black text-gray-900">
+            <li><a href="/index.html">BERANDA</a></li>
+            <li><a href="/pages/PageSewaLapangan.html">BOOKING</a></li>
+            <li><a href="/pages/PageBerita.html">ARTIKEL</a></li>
+            <li><a href="/pages/About.html">ABOUT</a></li>
         </ul>
-      </div>
+    </div>
 
-      <!-- Content -->
-      <div class="w-full md:w-2/3 md:pl-6 pt-4 md:pt-0">
-        <!-- Form Data Diri -->
-        <div x-show="tab === 'data'" x-transition.opacity>
-          <form id="profile-form">
-            <div class="mb-4">
-              <label for="nama" class="block text-gray-700 font-medium mb-2">Nama Lengkap</label>
-              <input type="text" id="nama"
-                class="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600">
-            </div>
-
-            <div class="mb-4">
-              <label for="username" class="block text-gray-700 font-medium mb-2">Username</label>
-              <input type="text" id="username"
-                class="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600">
-            </div>
-
-            <div class="mb-4">
-              <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-              <input type="email" id="email"
-                class="block w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-100" readonly>
-            </div>
-
-            <button type="submit" class="w-full bg-red-700 text-white py-2 rounded-lg hover:bg-red-800">Simpan
-              Perubahan</button>
-          </form>
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 pt-40 pb-32">
+        <div class="mb-10">
+            <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-2 uppercase">Profil Saya</h1>
+            <p class="text-gray-500 font-medium">Kelola informasi akun dan preferensi Anda.</p>
         </div>
 
-        <!-- Form Ubah Kata Sandi -->
-        <div x-show="tab === 'password'" x-transition.opacity>
-          <form id="password-form">
-            <div class="mb-4">
-              <label for="current-password" class="block text-gray-700 font-medium mb-2">Kata Sandi Lama</label>
-              <input type="password" id="current-password"
-                class="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600">
+        <div class="dashboard-card flex flex-col md:flex-row overflow-hidden" x-data="{ tab: 'data' }">
+            
+            <!-- Sidebar -->
+            <div class="w-full md:w-80 bg-gray-50 p-8 border-b md:border-b-0 md:border-r border-gray-100 shrink-0">
+                <div class="flex items-center gap-4 mb-10">
+                    <div class="w-16 h-16 rounded-2xl border-4 border-white shadow-lg overflow-hidden shrink-0">
+                        <img id="sidebar-profile-img" src="/assets/img/profile z.jpg" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="font-black text-lg" id="sidebar-name">User Name</h3>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-red-700">Member</p>
+                    </div>
+                </div>
+
+                <ul class="space-y-2">
+                    <li>
+                        <button @click="tab = 'data'" 
+                            class="tab-btn w-full text-left px-5 py-4 rounded-2xl font-bold text-sm flex items-center gap-3"
+                            :class="{ 'active': tab === 'data', 'text-gray-600': tab !== 'data' }">
+                            <i class="ri-user-settings-line text-lg"></i> Data Diri
+                        </button>
+                    </li>
+                    <li>
+                        <button @click="tab = 'password'" 
+                            class="tab-btn w-full text-left px-5 py-4 rounded-2xl font-bold text-sm flex items-center gap-3"
+                            :class="{ 'active': tab === 'password', 'text-gray-600': tab !== 'password' }">
+                            <i class="ri-lock-password-line text-lg"></i> Ubah Kata Sandi
+                        </button>
+                    </li>
+                </ul>
             </div>
 
-            <div class="mb-4">
-              <label for="new-password" class="block text-gray-700 font-medium mb-2">Kata Sandi Baru</label>
-              <input type="password" id="new-password"
-                class="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600">
-            </div>
+            <!-- Content Area -->
+            <div class="flex-1 p-8 md:p-12 relative min-h-[500px]">
+                
+                <!-- Form Data Diri -->
+                <div x-show="tab === 'data'" x-transition:enter="transition ease-out duration-300 delay-100" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-4" class="absolute inset-0 p-8 md:p-12" style="display: none;">
+                    
+                    <h2 class="text-2xl font-black mb-8 border-b border-gray-100 pb-4">Informasi Pribadi</h2>
+                    
+                    <form id="profile-form" class="max-w-md space-y-6">
+                        <div>
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 ml-2">Nama Lengkap</label>
+                            <input type="text" id="nama" class="input-premium" placeholder="Nama Lengkap Anda">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 ml-2">Username</label>
+                            <input type="text" id="username" class="input-premium" placeholder="Username Anda">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 ml-2">Email Address</label>
+                            <input type="email" id="email" class="input-premium" value="user@example.com" readonly title="Email tidak dapat diubah">
+                        </div>
+                        
+                        <div class="pt-4">
+                            <button type="submit" class="btn-action w-full py-4 rounded-2xl text-xs font-black uppercase tracking-widest">
+                                Simpan Perubahan
+                            </button>
+                        </div>
+                    </form>
+                </div>
 
-            <div class="mb-4">
-              <label for="confirm-password" class="block text-gray-700 font-medium mb-2">Konfirmasi Kata Sandi</label>
-              <input type="password" id="confirm-password"
-                class="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600">
+                <!-- Form Ubah Kata Sandi -->
+                <div x-show="tab === 'password'" x-transition:enter="transition ease-out duration-300 delay-100" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-4" class="absolute inset-0 p-8 md:p-12" style="display: none;">
+                    
+                    <h2 class="text-2xl font-black mb-8 border-b border-gray-100 pb-4">Keamanan Akun</h2>
+                    
+                    <form id="password-form" class="max-w-md space-y-6">
+                        <div>
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 ml-2">Kata Sandi Saat Ini</label>
+                            <input type="password" id="current-password" class="input-premium" placeholder="••••••••">
+                        </div>
+                        <div class="pt-4 border-t border-gray-100">
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 ml-2">Kata Sandi Baru</label>
+                            <input type="password" id="new-password" class="input-premium" placeholder="••••••••">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 ml-2">Konfirmasi Kata Sandi Baru</label>
+                            <input type="password" id="confirm-password" class="input-premium" placeholder="••••••••">
+                        </div>
+                        
+                        <div class="pt-4">
+                            <button type="submit" class="btn-action w-full py-4 rounded-2xl text-xs font-black uppercase tracking-widest">
+                                Perbarui Kata Sandi
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <button type="submit" class="w-full bg-red-700 text-white py-2 rounded-lg hover:bg-red-800">Simpan
-              Perubahan</button>
-          </form>
         </div>
-      </div>
+    </main>
+
+    <!-- Modal Notification -->
+    <div id="modal-notification" class="fixed inset-0 bg-gray-900/80 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity"></div>
+    <div id="modal-content" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 hidden opacity-0 transition-opacity w-full max-w-sm">
+        <div class="bg-white p-10 rounded-[32px] shadow-2xl text-center">
+            <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="ri-check-line text-3xl text-green-500"></i>
+            </div>
+            <h2 class="text-2xl font-black mb-2">Berhasil!</h2>
+            <p class="text-gray-500 font-medium text-sm mb-8" id="modal-message">Data telah diperbarui dengan sukses.</p>
+            <button id="close-modal" class="btn-action w-full text-white py-4 rounded-2xl text-xs font-black uppercase tracking-widest">
+                Tutup
+            </button>
+        </div>
     </div>
-  </div>
 
+    <!-- Footer -->
+    <footer class="pt-20 pb-10 bg-white border-t border-gray-100">
+        <div class="max-w-screen-xl mx-auto px-6 text-center">
+            <div class="bg-red-700 w-10 h-10 p-2 rounded-xl mx-auto mb-4">
+                <img src="/assets/img/LOGO SUPER SPORT APP.png" class="h-full object-contain" alt="Logo">
+            </div>
+            <div class="text-[10px] font-black text-gray-300 uppercase tracking-widest">
+                © 2025 SUPER SPORT INDONESIA. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </footer>
 
-  <!-- Modal Notifikasi -->
-  <div id="modal-notification" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
-    <div class="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
-      <h2 class="text-xl font-semibold text-gray-800 mb-4">Perubahan Berhasil!</h2>
-      <p class="text-gray-600">Data telah diperbarui dengan sukses.</p>
-      <button id="close-modal" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">OK</button>
-    </div>
-  </div>
+    <script>
+        $(document).ready(function () {
+            // Setup Profile Data
+            const storedName = localStorage.getItem('nama') || localStorage.getItem('username') || 'Super User';
+            const storedUsername = localStorage.getItem('username') || '';
+            const storedEmail = localStorage.getItem('email') || 'user@example.com';
+            const profileImg = localStorage.getItem("profileImage") || "/assets/img/profile z.jpg";
 
-  <!-- Alpine.js -->
+            $('#nama').val(storedName);
+            $('#username').val(storedUsername);
+            $('#email').val(storedEmail);
+            $('#sidebar-name').text(storedName);
+            $('#sidebar-profile-img').attr('src', profileImg);
 
+            // Auth logic
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+            if (isLoggedIn === "true") {
+                $("#login-btn").hide();
+                $("#profile-menu").removeClass("hidden");
+                $("#profile-img").attr("src", profileImg);
+            } else {
+                // Redirect if not logged in
+                window.location.href = "/pages/Login.html";
+            }
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Ambil elemen form
-      const profileForm = document.getElementById('profile-form');
-      const passwordForm = document.getElementById('password-form');
+            // Modal logic
+            function showModal(message) {
+                $('#modal-message').text(message);
+                $('#modal-notification').removeClass('hidden');
+                $('#modal-content').removeClass('hidden');
+                
+                // Trigger reflow
+                void document.getElementById('modal-notification').offsetWidth;
+                
+                $('#modal-notification').addClass('opacity-100');
+                $('#modal-content').addClass('opacity-100');
+            }
 
-      // Ambil elemen modal
-      const modal = document.getElementById('modal-notification');
-      const closeModal = document.getElementById('close-modal');
+            function hideModal() {
+                $('#modal-notification').removeClass('opacity-100');
+                $('#modal-content').removeClass('opacity-100');
+                setTimeout(() => {
+                    $('#modal-notification').addClass('hidden');
+                    $('#modal-content').addClass('hidden');
+                }, 300);
+            }
 
-      // Load data dari localStorage
-      document.getElementById('nama').value = localStorage.getItem('nama') || '';
-      document.getElementById('username').value = localStorage.getItem('username') || '';
-      document.getElementById('email').value = localStorage.getItem('email') || 'user@example.com';
+            $('#close-modal, #modal-notification').click(hideModal);
 
-      // Event listener untuk simpan perubahan Data Diri
-      profileForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+            // Form Submissions
+            $('#profile-form').submit(function (e) {
+                e.preventDefault();
+                const nama = $('#nama').val().trim();
+                const username = $('#username').val().trim();
 
-        const nama = document.getElementById('nama').value.trim();
-        const username = document.getElementById('username').value.trim();
+                localStorage.setItem('nama', nama);
+                localStorage.setItem('username', username);
+                $('#sidebar-name').text(nama);
 
-        localStorage.setItem('nama', nama);
-        localStorage.setItem('username', username);
+                showModal('Data diri berhasil diperbarui.');
+            });
 
-        showModal();
-      });
+            $('#password-form').submit(function (e) {
+                e.preventDefault();
+                const newPassword = $('#new-password').val();
+                const confirmPassword = $('#confirm-password').val();
 
-      // Event listener untuk simpan perubahan Kata Sandi
-      passwordForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+                if (newPassword !== confirmPassword) {
+                    alert("Konfirmasi kata sandi tidak cocok.");
+                    return;
+                }
 
-        const currentPassword = document.getElementById('current-password').value.trim();
-        const newPassword = document.getElementById('new-password').value.trim();
-        const confirmPassword = document.getElementById('confirm-password').value.trim();
+                if (newPassword.length < 6) {
+                    alert("Kata sandi terlalu pendek.");
+                    return;
+                }
 
-        if (newPassword !== confirmPassword) {
-          alert("Konfirmasi kata sandi tidak cocok.");
-          return;
-        }
+                localStorage.setItem('password', newPassword);
+                
+                // Reset form
+                $('#current-password').val('');
+                $('#new-password').val('');
+                $('#confirm-password').val('');
 
-        localStorage.setItem('password', newPassword);
-        showModal();
-      });
+                showModal('Kata sandi berhasil diubah.');
+            });
 
-      // Tampilkan modal
-      function showModal() {
-        modal.classList.remove('hidden');
-        modal.classList.add('opacity-0');
-        setTimeout(() => {
-          modal.classList.remove('opacity-0');
-        }, 100);
-      }
-
-      // Tutup modal
-      closeModal.addEventListener('click', function () {
-        modal.classList.add('hidden');
-      });
-    });
-  </script>
-
-  <script>
-    function navigateToGorSima() {
-      window.location.href = 'GorSima.html';
-    }
-    document.addEventListener("DOMContentLoaded", function () {
-      const isLoggedIn = localStorage.getItem("isLoggedIn");
-      const profileImg = localStorage.getItem("profileImage") || "../assets/img/profile z.jpg";
-      const loginBtn = document.getElementById("login-btn");
-      const profileMenu = document.getElementById("profile-menu");
-      const profileImgTag = document.getElementById("profile-img");
-      const userDropdown = document.getElementById("user-dropdown");
-      const profileIcon = document.getElementById("profile-icon");
-      const logoutBtn = document.getElementById("logout-btn");
-
-      if (isLoggedIn === "true") {
-        loginBtn.classList.add("hidden");
-        profileMenu.classList.remove("hidden");
-        profileImgTag.src = profileImg;
-      }
-
-      // Toggle Dropdown Animation
-      profileIcon.addEventListener("click", function (event) {
-        event.stopPropagation();
-        if (userDropdown.classList.contains("hidden")) {
-          userDropdown.classList.remove("hidden", "opacity-0", "scale-95");
-          userDropdown.classList.add("opacity-100", "scale-100");
-        } else {
-          userDropdown.classList.add("opacity-0", "scale-95");
-          setTimeout(() => userDropdown.classList.add("hidden"), 200);
-        }
-      });
-
-      // Close dropdown when clicking outside
-      document.addEventListener("click", function (event) {
-        if (!profileMenu.contains(event.target)) {
-          userDropdown.classList.add("opacity-0", "scale-95");
-          setTimeout(() => userDropdown.classList.add("hidden"), 200);
-        }
-      });
-
-      // Logout Function
-      logoutBtn.addEventListener("click", function () {
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("profileImage");
-
-        // Redirect ke Home.html setelah logout
-        window.location.href = "Home.html";
-      });
-    });
-    $(document).ready(function () {
-      // Toggle Dropdown Menu
-      $("#user-menu-button").click(function () {
-        $("#user-dropdown").toggleClass("hidden");
-      });
-
-      $(document).ready(function () {
-        $("#hamburger").click(function () {
-          $("#mobile-menu").slideToggle();
+            // UI Interactions
+            $("#hamburger").click(() => $("#mobile-menu").toggleClass("hidden flex"));
+            $("#profile-icon").click((e) => {
+                e.stopPropagation();
+                $("#user-dropdown").toggleClass("hidden");
+            });
+            $(document).click(() => $("#user-dropdown").addClass("hidden"));
+            $("#logout-btn").click(() => {
+                localStorage.removeItem("isLoggedIn");
+                window.location.href = "/index.html";
+            });
         });
-      });
-
-      // Tutup dropdown saat klik di luar area
-      $(document).click(function (event) {
-        if (!$(event.target).closest("#user-menu-button, #user-dropdown").length) {
-          $("#user-dropdown").addClass("hidden");
-        }
-      });
-      // Toggle Mobile Menu
-      $("[data-collapse-toggle]").click(function () {
-        $("#navbar-user").toggleClass("hidden");
-      });
-    });
-  </script>
+    </script>
 </body>
-
 </html>

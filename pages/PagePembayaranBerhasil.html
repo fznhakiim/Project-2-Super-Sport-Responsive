@@ -1,274 +1,233 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pembayaran Berhasil</title>
+    <title>Pembayaran Berhasil | Super Sport App</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <link rel="shortcut icon" type="x-icon" href="LOGO SUPER SPORT APP.png">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <link rel="shortcut icon" type="x-icon" href="/assets/img/LOGO SUPER SPORT APP.png">
+
     <style>
         :root {
-            --bg-color: #F8F9FC;
-            --main-color: #C00000;
-            --text-color: #212121;
-            --second-color: #DE3C3C;
-            --third-color: #F7B32D;
+            --primary: #CC0000;
+            --primary-dark: #A10000;
+            --surface: #FFFFFF;
+            --surface-alt: #F9F9F9;
+            --text-main: #111111;
+            --text-muted: #888888;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
         }
 
-        #mobile-menu {
-            position: fixed;
-            top: 4rem;
-            /* Pastikan sejajar dengan navbar */
-            left: 0;
-            width: 100%;
-            background-color: white;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            display: none;
-            z-index: 50;
+        body {
+            font-family: var(--font-main);
+            background-color: var(--surface-alt);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .success-card {
+            background: white;
+            border-radius: 40px;
+            border: 1px solid #F0F0F0;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.04);
+            animation: slideUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .check-circle {
+            animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s forwards;
+            transform: scale(0);
+        }
+
+        @keyframes scaleIn {
+            to { transform: scale(1); }
+        }
+
+        .btn-action {
+            background: var(--text-main);
+            color: white;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .btn-action:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(204, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            border: 2px solid #E5E7EB;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline:hover {
+            border-color: #D1D5DB;
+            background: #F3F4F6;
         }
     </style>
 </head>
 
-<body style="background-color: var(--bg-color); color: var(--text-color);">
-    <nav class="bg-white border-gray-200 dark:bg-gray-900 sticky top-0 z-50">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="../index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="../assets/img/LOGO SUPER SPORT APP.png" class="h-8" alt="Flowbite Logo" />
-                <span class="self-center text-xl font-semibold whitespace-nowrap text-red-800">Super Sport App</span>
+<body>
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 py-5 nav-glass" id="header">
+        <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between">
+            <a href="/index.html" class="flex items-center gap-4">
+                <div class="bg-red-700 p-2 rounded-xl">
+                    <img src="/assets/img/LOGO SUPER SPORT APP.png" class="h-6" alt="Logo">
+                </div>
+                <span class="text-xl font-black tracking-tighter uppercase">Super Sport</span>
             </a>
 
-            <!-- Login Button or Profile Icon -->
-            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <button id="login-btn" type="button" onclick="window.location.href='Login.html';"
-                    class="text-white bg-red-800 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
-                    Login
-                </button>
-
-                <!-- Profile Icon (Hidden by Default) -->
-                <div id="profile-menu" class="hidden relative">
-                    <button id="profile-icon"
-                        class="w-10 h-10 rounded-full bg-gray-300 overflow-hidden focus:outline-none">
-                        <img id="profile-img" src="../assets/img/profile z.jpg" alt="Profile">
-                    </button>
-
-                    <!-- Dropdown Menu Profile -->
-                    <div id="user-dropdown"
-                        class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 transition-all duration-300 opacity-0 scale-95">
-                        <a href="Profile.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</a>
-                        <button id="logout-btn"
-                            class="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">Keluar</button>
+            <div class="hidden md:flex items-center gap-12">
+                <ul class="flex gap-10 text-[10px] font-black tracking-widest uppercase">
+                    <li><a href="/index.html" class="hover:text-red-700 transition-colors">Beranda</a></li>
+                    <li><a href="/pages/PageSewaLapangan.html" class="hover:text-red-700 transition-colors">Booking</a></li>
+                    <li><a href="/pages/PageBerita.html" class="hover:text-red-700 transition-colors">Artikel</a></li>
+                    <li><a href="/pages/About.html" class="hover:text-red-700 transition-colors">Tentang</a></li>
+                </ul>
+                <div id="auth-ui">
+                    <button id="login-btn" onclick="window.location.href='/pages/Login.html'" class="text-[10px] font-black uppercase tracking-widest bg-gray-900 text-white px-8 py-3 rounded-xl hover:bg-red-700 transition-all">Sign In</button>
+                    
+                    <div id="profile-menu" class="hidden relative">
+                        <button id="profile-icon" class="w-10 h-10 rounded-xl border-2 border-red-700 p-0.5">
+                            <img id="profile-img" src="/assets/img/profile z.jpg" class="w-full h-full object-cover rounded-lg">
+                        </button>
+                        <div id="user-dropdown" class="hidden absolute right-0 mt-4 w-52 bg-white rounded-2xl shadow-2xl border border-gray-100 p-2">
+                            <a href="/pages/Profile.html" class="block px-4 py-3 text-sm font-bold text-gray-700 hover:bg-red-50 rounded-xl">Profil</a>
+                            <button id="logout-btn" class="w-full text-left px-4 py-3 text-sm font-bold text-red-600 hover:bg-red-50 rounded-xl">Logout</button>
+                        </div>
                     </div>
                 </div>
-
-                <button id="hamburger" type="button"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden">
-                    <span class="sr-only">Open menu</span>
-                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 1h15M1 7h15M1 13h15" />
-                    </svg>
-                </button>
             </div>
-
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-                <ul
-                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                    <li>
-                        <a href="../index.html"
-                            class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
-                    </li>
-                    <li>
-                        <a href="PageSewaLapangan.html"
-                            class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sewa
-                            Lapangan</a>
-                    </li>
-                    <li>
-                        <a href="PageBerita.html"
-                            class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Blog</a>
-                    </li>
-                    <li>
-                        <a href="About.html"
-                            class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-red-800 hover:text-white md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-red-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About
-                            Us</a>
-                    </li>
-                </ul>
-            </div>
+            
+            <button id="hamburger" class="md:hidden p-3 text-gray-900 bg-gray-50 rounded-2xl">
+                <i class="ri-menu-5-line"></i>
+            </button>
         </div>
     </nav>
-</body>
-<!-- Mobile Menu -->
-<nav id="mobile-menu" class="absolute left-0 w-full bg-white shadow-md p-4 md:hidden">
-    <a href="../index.html" class="block py-2 border-b">Home</a>
-    <a href="PageSewaLapangan.html" class="block py-2 border-b">Sewa Lapangan</a>
-    <a href="PageBerita.html" class="block py-2 border-b">Blog</a>
-    <a href="About.html" class="block py-2 border-b">About</a>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-x-0 top-0 z-40 bg-white shadow-2xl p-10 pt-32 hidden flex-col">
+        <ul class="space-y-6 text-3xl font-black text-gray-900">
+            <li><a href="/index.html">BERANDA</a></li>
+            <li><a href="/pages/PageSewaLapangan.html">BOOKING</a></li>
+            <li><a href="/pages/PageBerita.html">ARTIKEL</a></li>
+            <li><a href="/pages/About.html">ABOUT</a></li>
+        </ul>
     </div>
-    </div>
-</nav>
 
-
-<div class="flex justify-center items-center min-h-screen bg-gray-100">
-    <div class="bg-white p-20 rounded-lg shadow-lg w-11/12 max-w-md text-center">
-        <div class="flex justify-center mb-4">
-            <div class="w-12 h-12 bg-green-500 flex items-center justify-center rounded-full">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
+    <main class="min-h-screen flex items-center justify-center px-6 pt-32 pb-20">
+        <div class="success-card w-full max-w-lg p-10 text-center">
+            
+            <div class="check-circle w-28 h-28 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-green-500/20">
+                <i class="ri-check-line text-6xl text-green-500"></i>
             </div>
-        </div>
-        <h2 class="text-xl font-bold">Pembayaran Berhasil</h2>
-        <p class="text-gray-600">Terima kasih telah melakukan pembayaran.</p>
-        <a href="home.html"
-            class="mt-4 px-4 py-2 border border-red-500 text-red-500 rounded-lg hover:bg-red-800 hover:text-white inline-block">
-            Kembali ke Halaman Utama
-        </a>
-    </div>
-</div>
+            
+            <h1 class="text-4xl font-black tracking-tighter mb-4 uppercase">Booking Confirmed!</h1>
+            <p class="text-gray-500 font-medium mb-8 leading-relaxed">
+                Pembayaran Anda telah berhasil diverifikasi. Detail booking telah dikirimkan ke email Anda. Siapkan perlengkapan olahraga Anda!
+            </p>
 
-
-
-<!-- Footer -->
-<footer class="bg-white dark:bg-gray-900">
-    <div class="mx-auto w-full max-w-screen-xl">
-        <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-3">
-            <div>
-                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Company</h2>
-                <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                    <li class="mb-4">
-                        <a href="About.html" class="hover:text-red-800 focus:text-red-800">About Us</a>
-                    </li>
-                    <li class="mb-4">
-                        <a href="Privacy&Policy.html" class="hover:text-red-800 focus:text-red-800">Privacy & Policy</a>
-                    </li>
-                    <li class="mb-4">
-                        <a href="Terms&Conditions.html" class="hover:text-red-800 focus:text-red-800">Terms &
-                            Condition</a>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Contact Us</h2>
-                <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                    <li class="mb-4">
-                        <a href="ContactUs.html" class="hover:text-red-800 focus:text-red-800">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">How to Reach Us</h2>
-                <div class="flex space-x-5 rtl:space-x-reverse">
-                    <a href="https://www.instagram.com/ayo.indonesia/" target="_blank"
-                        class="text-gray-400 hover:text-red-800 focus:text-red-800">
-                        <i class="ri-instagram-line text-xl"></i>
-                    </a>
-                    <a href="https://maps.app.goo.gl/vyFhwrUeHUohAFvD8" target="_blank"
-                        class="text-gray-400 hover:text-red-800 focus:text-red-800">
-                        <i class="ri-map-pin-2-fill text-xl"></i>
-                    </a>
-                    <a href="https://x.com/ayosportapp" target="_blank"
-                        class="text-gray-400 hover:text-red-800 focus:text-red-800">
-                        <i class="ri-twitter-fill text-xl"></i>
-                    </a>
-                    <a href="https://web.facebook.com/ayo.indonesia.sports?_rdc=1&_rdr" target="_blank"
-                        class="text-gray-400 hover:text-red-800 focus:text-red-800">
-                        <i class="ri-facebook-fill text-xl"></i>
-                    </a>
+            <div class="bg-gray-50 rounded-3xl p-6 text-left mb-10 border border-gray-100">
+                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-4 border-b border-gray-200 pb-3">Ringkasan Pesanan</p>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-bold text-gray-600">Venue</span>
+                        <span class="text-sm font-black text-gray-900" id="summary-venue">GOR Sigma</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-bold text-gray-600">Total Sesi</span>
+                        <span class="text-sm font-black text-gray-900" id="summary-items">1 Sesi</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-bold text-gray-600">Total Bayar</span>
+                        <span class="text-sm font-black text-red-700" id="summary-total">Rp 0</span>
+                    </div>
                 </div>
             </div>
+
+            <div class="flex flex-col gap-3">
+                <button onclick="window.location.href='/pages/Profile.html'" class="btn-action w-full py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest">
+                    Lihat E-Tiket Saya
+                </button>
+                <button onclick="window.location.href='/index.html'" class="btn-outline w-full py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest text-gray-600">
+                    Kembali ke Beranda
+                </button>
+            </div>
         </div>
-        <div class="px-4 py-6 bg-white dark:bg-white md:flex md:items-center md:justify-between">
-            <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2025 Super Sport App Indonesia. All
-                Rights Reserved.
-            </span>
-        </div>
-    </div>
-</footer>
+    </main>
 
-<script>
-    $(document).ready(function () {
-        console.log("Document is ready!");
+    <script>
+        $(document).ready(function () {
+            // Retrieve booking info to display
+            let jadwal = JSON.parse(localStorage.getItem("selectedSchedules")) || [];
+            let totalBayarFinal = parseInt(localStorage.getItem("totalBayarFinal")) || 0;
+            let venueName = localStorage.getItem("venueName") || "GOR Sigma";
 
-        const isLoggedIn = localStorage.getItem("isLoggedIn");
-        const profileImg = localStorage.getItem("profileImage") || "../assets/img/profile z.jpg";
-        const loginBtn = $("#login-btn");
-        const profileMenu = $("#profile-menu");
-        const profileImgTag = $("#profile-img");
-        const userDropdown = $("#user-dropdown");
-        const profileIcon = $("#profile-icon");
-        const logoutBtn = $("#logout-btn");
-        const mobileMenu = $("#mobile-menu");
-        const navbarUser = $("#navbar-user");
-        const dropdownButton = $("#dropdownDefaultButton");
-        const dropdownMenu = $("#dropdownMenu");
-
-        // Cek apakah user sudah login
-        if (isLoggedIn === "true") {
-            console.log("User is logged in");
-            loginBtn.addClass("hidden");
-            profileMenu.removeClass("hidden");
-            profileImgTag.attr("src", profileImg);
-        }
-
-        // Toggle Profile Dropdown
-        $("#user-menu-button, #profile-icon").click(function (event) {
-            event.stopPropagation();
-            userDropdown.toggleClass("hidden opacity-0 scale-95");
-            console.log("Profile dropdown toggled");
-        });
-
-        // Tutup profile dropdown saat klik di luar area
-        $(document).click(function (event) {
-            if (!$(event.target).closest("#user-menu-button, #profile-menu").length) {
-                userDropdown.addClass("hidden opacity-0 scale-95");
-                console.log("Clicked outside profile dropdown, hiding it");
+            document.getElementById("summary-venue").textContent = venueName;
+            document.getElementById("summary-items").textContent = `${jadwal.length} Sesi`;
+            if (totalBayarFinal > 0) {
+                document.getElementById("summary-total").textContent = `Rp ${totalBayarFinal.toLocaleString("id-ID")}`;
             }
-        });
 
-        // Toggle Mobile Menu
-        $("#hamburger").click(function () {
-            mobileMenu.slideToggle();
-            console.log("Mobile menu toggled");
-        });
+            // Clear checkout-related local storage now that payment is done
+            // In a real app, this data would be sent to the backend to create an actual order in the user's history
+            setTimeout(() => {
+                localStorage.removeItem("selectedSchedules");
+                localStorage.removeItem("totalBayar");
+                localStorage.removeItem("convenienceFee");
+                localStorage.removeItem("totalBayarFinal");
+                localStorage.removeItem("paymentExpirationTime");
+                localStorage.removeItem("venueName");
+            }, 1000);
 
-        // Toggle Navbar User
-        $("[data-collapse-toggle]").click(function () {
-            navbarUser.toggleClass("hidden");
-            console.log("Navbar toggled");
-        });
-
-        // Toggle Dropdown Menu (Pastikan tidak tertutup langsung)
-        dropdownButton.click(function (event) {
-            event.stopPropagation(); // Hindari event click dari document
-            dropdownMenu.toggleClass("hidden");
-            console.log("Dropdown menu toggled");
-        });
-
-        // Tutup dropdown saat klik di luar area
-        $(document).click(function (event) {
-            if (!$(event.target).closest("#dropdownDefaultButton, #dropdownMenu").length) {
-                dropdownMenu.addClass("hidden");
-                console.log("Clicked outside dropdown, hiding it");
+            // Auth logic
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+            const profileImg = localStorage.getItem("profileImage") || "/assets/img/profile z.jpg";
+            if (isLoggedIn === "true") {
+                $("#login-btn").hide();
+                $("#profile-menu").removeClass("hidden");
+                $("#profile-img").attr("src", profileImg);
             }
+
+            $("#hamburger").click(() => $("#mobile-menu").toggleClass("hidden flex"));
+            $("#profile-icon").click((e) => {
+                e.stopPropagation();
+                $("#user-dropdown").toggleClass("hidden");
+            });
+            $(document).click(() => $("#user-dropdown").addClass("hidden"));
+            $("#logout-btn").click(() => {
+                localStorage.removeItem("isLoggedIn");
+                window.location.href = "/index.html";
+            });
         });
-
-        // Logout Function
-        logoutBtn.click(function () {
-            console.log("User logged out");
-            localStorage.removeItem("isLoggedIn");
-            localStorage.removeItem("profileImage");
-
-            // Redirect ke Home.html setelah logout
-            window.location.href = "Home.html";
-        });
-    });
-</script>
-
+    </script>
+</body>
 </html>
