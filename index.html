@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Sport App | Home</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <link rel="shortcut icon" type="x-icon" href="/assets/img/LOGO SUPER SPORT APP.png">
+
+    <style>
+        :root {
+            --primary: #CC0000;
+            --primary-dark: #A10000;
+            --surface: #FFFFFF;
+            --surface-alt: #FBFBFB;
+            --text-main: #111111;
+            --text-muted: #777777;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--surface);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .hero-title {
+            letter-spacing: -0.06em;
+            line-height: 0.85;
+        }
+
+        .btn-action {
+            background: var(--primary);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .btn-action:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(204, 0, 0, 0.2);
+        }
+
+        .news-card {
+            transition: all 0.5s ease;
+            border: 1px solid #F0F0F0;
+            border-radius: 32px;
+            overflow: hidden;
+        }
+
+        .news-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+        }
+
+        .footer-link {
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .animate-hero {
+            animation: fadeInScale 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        .section-tag {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <nav class="fixed top-0 w-full z-50 py-5 transition-all duration-300 nav-glass" id="header">
+        <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between">
+            <a href="/index.html" class="flex items-center gap-4">
+                <div class="bg-red-700 p-2 rounded-xl">
+                    <img src="/assets/img/LOGO SUPER SPORT APP.png" class="h-6" alt="Logo">
+                </div>
+                <span class="text-xl font-black tracking-tighter uppercase">Super Sport</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-12">
+                <ul class="flex gap-10 text-[10px] font-black tracking-widest uppercase">
+                    <li><a href="/index.html" class="text-red-700">Beranda</a></li>
+                    <li><a href="/pages/PageSewaLapangan.html" class="hover:text-red-700 transition-colors">Booking</a></li>
+                    <li><a href="/pages/PageBerita.html" class="hover:text-red-700 transition-colors">Artikel</a></li>
+                    <li><a href="/pages/About.html" class="hover:text-red-700 transition-colors">Tentang</a></li>
+                </ul>
+                <div id="auth-ui">
+                    <button id="login-btn" onclick="window.location.href='/pages/Login.html'" class="text-[10px] font-black uppercase tracking-widest bg-gray-900 text-white px-8 py-3 rounded-xl hover:bg-red-700 transition-all">Sign In</button>
+                    
+                    <div id="profile-menu" class="hidden relative">
+                        <button id="profile-icon" class="w-10 h-10 rounded-xl border-2 border-red-700 p-0.5">
+                            <img id="profile-img" src="/assets/img/profile z.jpg" class="w-full h-full object-cover rounded-lg">
+                        </button>
+                        <div id="user-dropdown" class="hidden absolute right-0 mt-4 w-52 bg-white rounded-2xl shadow-2xl border border-gray-100 p-2">
+                            <a href="/pages/Profile.html" class="block px-4 py-3 text-sm font-bold text-gray-700 hover:bg-red-50 rounded-xl">Profil</a>
+                            <button id="logout-btn" class="w-full text-left px-4 py-3 text-sm font-bold text-red-600 hover:bg-red-50 rounded-xl">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="mobile-toggle" class="md:hidden text-2xl"><i class="ri-menu-5-line"></i></button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-40 p-10 hidden flex-col justify-center text-center">
+        <ul class="text-4xl font-black space-y-8">
+            <li><a href="/index.html">BERANDA</a></li>
+            <li><a href="/pages/PageSewaLapangan.html">BOOKING</a></li>
+            <li><a href="/pages/PageBerita.html">ARTIKEL</a></li>
+            <li><a href="/pages/About.html">TENTANG</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero -->
+    <section class="pt-40 pb-20 overflow-hidden">
+        <div class="max-w-screen-xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center animate-hero">
+            <div>
+                <span class="section-tag">Empowering Athletes</span>
+                <h1 class="hero-title text-7xl md:text-9xl font-black mb-10">
+                    MOVE <br>FAST <br><span class="text-red-700">WIN.</span>
+                </h1>
+                <p class="text-gray-500 font-bold text-lg max-w-md mb-12 leading-relaxed">
+                    Sistem booking lapangan paling intuitif di Indonesia. Pilih arena Anda dan mulai beraksi sekarang juga.
+                </p>
+                <div class="flex gap-6">
+                    <a href="/pages/PageSewaLapangan.html" class="btn-action text-white font-black py-5 px-14 rounded-2xl text-xs tracking-widest uppercase">
+                        Book Arena
+                    </a>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="/assets/img/lapangan ai 3.webp" class="w-full h-[600px] object-cover rounded-[60px] shadow-2xl">
+                <div class="absolute -bottom-10 right-10 bg-white p-8 rounded-3xl shadow-2xl border border-gray-50">
+                    <p class="text-3xl font-black text-gray-900 leading-none">500+</p>
+                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-2">Active Venues</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content: Services -->
+    <section class="py-32 border-t border-gray-50">
+        <div class="max-w-screen-xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-16">
+                <div>
+                    <i class="ri-flashlight-line text-4xl text-red-700"></i>
+                    <h3 class="text-2xl font-black mt-6 mb-4">Instant Access</h3>
+                    <p class="text-gray-500 font-medium leading-relaxed">Tanpa konfirmasi manual. Jadwal Anda terjamin langsung secara otomatis.</p>
+                </div>
+                <div>
+                    <i class="ri-shield-user-line text-4xl text-red-700"></i>
+                    <h3 class="text-2xl font-black mt-6 mb-4">Verified Hub</h3>
+                    <p class="text-gray-500 font-medium leading-relaxed">Semua pengelola lapangan telah melewati proses verifikasi ketat dari tim kami.</p>
+                </div>
+                <div>
+                    <i class="ri-medal-line text-4xl text-red-700"></i>
+                    <h3 class="text-2xl font-black mt-6 mb-4">Pro Community</h3>
+                    <p class="text-gray-500 font-medium leading-relaxed">Temukan lawan tanding yang seimbang dan tingkatkan level permainan Anda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Redesigned Articles Section (Replacing Newsroom) -->
+    <section class="py-32 bg-gray-50">
+        <div class="max-w-screen-xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                <div>
+                    <span class="section-tag">Insights</span>
+                    <h2 class="text-5xl md:text-7xl font-black tracking-tighter">READ & <br>IMPROVE.</h2>
+                </div>
+                <a href="/pages/PageBerita.html" class="font-black text-xs uppercase tracking-widest border-b-4 border-red-700 pb-2">View All Articles</a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="news-card bg-white group cursor-pointer" onclick="window.location.href='/pages/PageBerita.html'">
+                    <img src="/assets/img/BERITA1.jpeg" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="p-8">
+                        <span class="text-[10px] font-black text-red-700 uppercase tracking-widest">Training</span>
+                        <h4 class="text-xl font-black mt-4 mb-6 leading-tight">Teknik Footwork Badminton Untuk Kelincahan Maksimal</h4>
+                        <div class="h-1 w-12 bg-red-700"></div>
+                    </div>
+                </div>
+                <div class="news-card bg-white group cursor-pointer" onclick="window.location.href='/pages/PageBerita.html'">
+                    <img src="/assets/img/BERITA3.jpg" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="p-8">
+                        <span class="text-[10px] font-black text-red-700 uppercase tracking-widest">Review</span>
+                        <h4 class="text-xl font-black mt-4 mb-6 leading-tight">Raket Pro vs Amatir: Apa Saja Perbedaannya?</h4>
+                        <div class="h-1 w-12 bg-red-700"></div>
+                    </div>
+                </div>
+                <div class="news-card bg-white group cursor-pointer" onclick="window.location.href='/pages/PageBerita.html'">
+                    <img src="/assets/img/GOR2.jpg" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="p-8">
+                        <span class="text-[10px] font-black text-red-700 uppercase tracking-widest">Update</span>
+                        <h4 class="text-xl font-black mt-4 mb-6 leading-tight">Jadwal Turnamen Regional Jakarta 2025</h4>
+                        <div class="h-1 w-12 bg-red-700"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Clean White Style) -->
+    <footer class="pt-32 pb-20 bg-white">
+        <div class="max-w-screen-xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-20 mb-24">
+                <div class="col-span-2 space-y-10">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-red-700 p-2 rounded-xl">
+                            <img src="/assets/img/LOGO SUPER SPORT APP.png" class="h-6" alt="Logo">
+                        </div>
+                        <span class="text-2xl font-black tracking-tighter uppercase">Super Sport</span>
+                    </div>
+                    <p class="text-gray-400 font-bold max-w-sm leading-relaxed">Penyedia layanan booking lapangan olahraga terintegrasi paling inovatif di Indonesia.</p>
+                    <div class="flex gap-8 text-2xl text-gray-300">
+                        <a href="#" class="footer-link"><i class="ri-instagram-line"></i></a>
+                        <a href="#" class="footer-link"><i class="ri-twitter-x-line"></i></a>
+                        <a href="#" class="footer-link"><i class="ri-youtube-line"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="font-black text-[11px] uppercase tracking-widest mb-8 text-gray-900">Explore</h5>
+                    <ul class="space-y-4 font-bold text-sm text-gray-500">
+                        <li><a href="/pages/PageSewaLapangan.html" class="footer-link">Sewa Lapangan</a></li>
+                        <li><a href="/pages/PageBerita.html" class="footer-link">Berita Sport</a></li>
+                        <li><a href="/pages/About.html" class="footer-link">Tentang Kami</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-black text-[11px] uppercase tracking-widest mb-8 text-gray-900">Support</h5>
+                    <ul class="space-y-4 font-bold text-sm text-gray-500">
+                        <li><a href="/pages/ContactUs.html" class="footer-link">Hubungi Kami</a></li>
+                        <li><a href="/pages/Privacy&Policy.html" class="footer-link">Privasi</a></li>
+                        <li><a href="/pages/Terms&Conditions.html" class="footer-link">Ketentuan</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-10 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-black text-gray-300 uppercase tracking-widest">
+                <p>© 2025 SUPER SPORT INDONESIA. ALL RIGHTS RESERVED.</p>
+                <p>CRAFTED BY ANTIGRAVITY</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+            const profileImg = localStorage.getItem("profileImage") || "/assets/img/profile z.jpg";
+
+            // Auth logic
+            if (isLoggedIn === "true") {
+                $("#login-btn").hide();
+                $("#profile-menu").removeClass("hidden");
+                $("#profile-img").attr("src", profileImg);
+            }
+
+            // Scroll events
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 50) {
+                    $("#header").addClass("py-3").removeClass("py-5");
+                } else {
+                    $("#header").addClass("py-5").removeClass("py-3");
+                }
+            });
+
+            // Menu Handlers
+            $("#mobile-toggle").click(() => $("#mobile-menu").toggleClass("hidden flex"));
+            $("#profile-icon").click((e) => {
+                e.stopPropagation();
+                $("#user-dropdown").toggleClass("hidden");
+            });
+            $(document).click(() => $("#user-dropdown").addClass("hidden"));
+            
+            $("#logout-btn").click(() => {
+                localStorage.removeItem("isLoggedIn");
+                window.location.reload();
+            });
+        });
+    </script>
+</body>
+</html>

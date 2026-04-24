@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    text-decoration: none;
+    list-style: none;
+}
+
+:root {
+    --bg-color: #F8F9FC;
+    --darkW-color: #c0c0c0;
+    --darkerW-color: #757575;
+    --main-color: #C00000;
+    --text-color: #212121;
+    --second-color: #DE3C3C;
+    --third-color: #F7B32D;
+}
+
+@media (max-width: 1280px) {
+    header {
+        padding: 14px 2%;
+        transition: .2s;
+    }
+
+    .navbar a {
+        padding: 5px 0;
+        margin: 0px 20px;
+    }
+}
+
+@media (max-width: 720px) {
+    #menu-icon {
+        display: block;
+    }
+}
+
+.contact-form-section {
+    padding: 50px 0;
+    background-color: #fff;
+    text-align: center;
+}
+
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f8f9fc;
+    resize: none; /* Prevent default resizing */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+textarea {
+    height: 100px;
+    resize: vertical; /* Allow vertical resizing */
+}
+
+input:focus, textarea:focus {
+    border-color: #c00000;
+    outline: none;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    background-color: #c00000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #a00000;
+}

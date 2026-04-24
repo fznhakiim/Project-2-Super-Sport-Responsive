@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | Super Sport App</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    
+    <link rel="shortcut icon" type="x-icon" href="/assets/img/LOGO SUPER SPORT APP.png">
+
+    <style>
+        :root {
+            --primary: #CC0000;
+            --primary-hover: #A10000;
+            --surface: #FFFFFF;
+            --bg-body: #F9F9F9;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .login-card {
+            background: white;
+            width: 100%;
+            max-width: 440px;
+            padding: 3rem;
+            border-radius: 40px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.06);
+            border: 1px solid #F0F0F0;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 1.25rem 1.5rem;
+            background: #F9F9F9;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 10px 20px rgba(204, 0, 0, 0.05);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            padding: 1.25rem;
+            border-radius: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(204, 0, 0, 0.2);
+        }
+
+        .btn-back {
+            width: 100%;
+            background: transparent;
+            color: #888;
+            padding: 1rem;
+            border-radius: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.7rem;
+            margin-top: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .btn-back:hover {
+            color: var(--primary);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-card animate-in">
+        <div class="text-center mb-10">
+            <div class="bg-red-700 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-red-700/20">
+                <img src="/assets/img/LOGO SUPER SPORT APP.png" class="h-8" alt="Logo">
+            </div>
+            <h1 class="text-3xl font-black tracking-tighter italic">WELCOME BACK.</h1>
+            <p class="text-gray-400 font-bold text-sm mt-2">Sign in to continue your sports journey</p>
+        </div>
+
+        <form id="login-form" class="space-y-6">
+            <div>
+                <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 ml-2">Username</label>
+                <input type="text" id="loginUser" class="input-field" placeholder="Enter your username" required>
+            </div>
+            <div>
+                <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 ml-2">Password</label>
+                <input type="password" id="loginPassword" class="input-field" placeholder="••••••••" required>
+            </div>
+
+            <div class="pt-4">
+                <button type="submit" class="btn-submit">Sign In</button>
+                <button type="button" class="btn-back" onclick="location.href='/index.html'">Cancel</button>
+            </div>
+        </form>
+
+        <div class="mt-10 pt-10 border-t border-gray-100 text-center">
+            <p class="text-xs font-bold text-gray-400">
+                Don't have an account? 
+                <a href="/pages/register.html" class="text-red-700 hover:underline ml-1">Register Now</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const username = document.getElementById('loginUser').value;
+            const password = document.getElementById('loginPassword').value;
+
+            // In a real app, you would validate against a server.
+            // For this project, we check localStorage.
+            const storedUsername = localStorage.getItem('username') || 'admin'; // Default fallback
+            const storedPassword = localStorage.getItem('password') || 'admin123'; // Default fallback
+
+            if (username === storedUsername && password === storedPassword) {
+                localStorage.setItem('isLoggedIn', 'true');
+                // You can also set a default profile image if not exists
+                if (!localStorage.getItem('profileImage')) {
+                    localStorage.setItem('profileImage', '/assets/img/profile z.jpg');
+                }
+                
+                // Show success message and redirect
+                const btn = event.target.querySelector('button[type="submit"]');
+                btn.innerHTML = '<i class="ri-loader-4-line animate-spin mr-2"></i> LOADING...';
+                btn.style.opacity = '0.7';
+                btn.style.pointerEvents = 'none';
+
+                setTimeout(() => {
+                    window.location.href = '/index.html';
+                }, 800);
+            } else {
+                alert('Invalid username or password. (Hint: use admin / admin123 if not registered)');
+            }
+        });
+    </script>
+</body>
+
+</html>

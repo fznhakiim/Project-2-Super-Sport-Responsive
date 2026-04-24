@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Super Sport App</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <link rel="shortcut icon" type="x-icon" href="/assets/img/LOGO SUPER SPORT APP.png">
+
+    <style>
+        :root {
+            --primary: #CC0000;
+            --primary-dark: #A10000;
+            --surface: #FFFFFF;
+            --surface-alt: #F9F9F9;
+            --text-main: #111111;
+            --text-muted: #888888;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--surface);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .mission-card {
+            background: white;
+            border-radius: 40px;
+            border: 1px solid #F0F0F0;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .mission-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.05);
+            transform: translateY(-10px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-up {
+            animation: fadeIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        .nav-active {
+            color: var(--primary) !important;
+            font-weight: 800;
+        }
+
+        #mobile-menu {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(-100%);
+        }
+
+        #mobile-menu.active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 py-5 nav-glass" id="header">
+        <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between">
+            <a href="/index.html" class="flex items-center gap-4">
+                <div class="bg-red-700 p-2 rounded-xl">
+                    <img src="/assets/img/LOGO SUPER SPORT APP.png" class="h-6" alt="Logo">
+                </div>
+                <span class="text-xl font-black tracking-tighter uppercase">Super Sport</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-12">
+                <ul class="flex gap-10 text-[10px] font-black tracking-widest uppercase">
+                    <li><a href="/index.html" class="hover:text-red-700 transition-colors">Beranda</a></li>
+                    <li><a href="/pages/PageSewaLapangan.html" class="hover:text-red-700 transition-colors">Booking</a></li>
+                    <li><a href="/pages/PageBerita.html" class="hover:text-red-700 transition-colors">Artikel</a></li>
+                    <li><a href="/pages/About.html" class="nav-active">Tentang</a></li>
+                </ul>
+                <div id="auth-ui">
+                    <button id="login-btn" onclick="window.location.href='/pages/Login.html'" class="text-[10px] font-black uppercase tracking-widest bg-gray-900 text-white px-8 py-3 rounded-xl hover:bg-red-700 transition-all">Sign In</button>
+                    
+                    <div id="profile-menu" class="hidden relative">
+                        <button id="profile-icon" class="w-10 h-10 rounded-xl border-2 border-red-700 p-0.5">
+                            <img id="profile-img" src="/assets/img/profile z.jpg" class="w-full h-full object-cover rounded-lg">
+                        </button>
+                        <div id="user-dropdown" class="hidden absolute right-0 mt-4 w-52 bg-white rounded-2xl shadow-2xl border border-gray-100 p-2">
+                            <a href="/pages/Profile.html" class="block px-4 py-3 text-sm font-bold text-gray-700 hover:bg-red-50 rounded-xl">Profil</a>
+                            <button id="logout-btn" class="w-full text-left px-4 py-3 text-sm font-bold text-red-600 hover:bg-red-50 rounded-xl">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="hamburger" class="md:hidden p-3 text-gray-900 bg-gray-50 rounded-2xl">
+                <i class="ri-menu-5-line"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-x-0 top-0 z-40 bg-white shadow-2xl p-10 pt-32 md:hidden">
+        <ul class="space-y-6 text-3xl font-black text-gray-900">
+            <li><a href="/index.html">BERANDA</a></li>
+            <li><a href="/pages/PageSewaLapangan.html">BOOKING</a></li>
+            <li><a href="/pages/PageBerita.html">ARTIKEL</a></li>
+            <li><a href="/pages/About.html" class="text-red-800">ABOUT</a></li>
+        </ul>
+    </div>
+
+    <!-- Page Header -->
+    <header class="pt-48 pb-24 bg-white border-b border-gray-50">
+        <div class="max-w-screen-xl mx-auto px-6 text-center animate-up">
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter italic mb-8">
+                WHO WE <br><span class="text-red-700">ARE.</span>
+            </h1>
+            <p class="text-gray-400 font-bold max-w-xl mx-auto leading-relaxed">
+                Platform revolusioner yang menghubungkan atlet dengan arena olahraga terbaik di Indonesia. Kami ada untuk mempermudah langkah Anda menuju kemenangan.
+            </p>
+        </div>
+    </header>
+
+    <!-- Content Section -->
+    <main class="max-w-screen-xl mx-auto px-6 py-32 space-y-40">
+        
+        <!-- Story Section -->
+        <section class="grid lg:grid-cols-2 gap-20 items-center animate-up">
+            <div>
+                <p class="text-[11px] font-black uppercase tracking-[0.3em] text-red-700 mb-8">The Story</p>
+                <h2 class="text-4xl md:text-6xl font-black tracking-tighter mb-10 leading-none">MEMBANGUN EKOSISTEM OLAHRAGA MODERN.</h2>
+                <p class="text-gray-500 font-bold leading-relaxed mb-8">
+                    Super Sport App lahir dari keresahan atlet amatir hingga profesional yang kesulitan menemukan dan memesan lapangan berkualitas dengan cepat. Kami membangun jembatan digital yang tidak hanya menyediakan tempat, tapi juga membangun komunitas.
+                </p>
+                <p class="text-gray-500 font-bold leading-relaxed">
+                    Kami percaya bahwa setiap orang berhak mendapatkan akses mudah untuk berolahraga, kapan pun dan di mana pun.
+                </p>
+            </div>
+            <div class="relative">
+                <img src="/assets/img/lapangan ai 3.webp" class="w-full h-[600px] object-cover rounded-[60px] shadow-2xl">
+                <div class="absolute -bottom-10 -left-10 bg-white p-10 rounded-[40px] shadow-2xl border border-gray-50">
+                    <p class="text-xs font-black text-red-700 uppercase tracking-widest mb-2">Our Reach</p>
+                    <p class="text-5xl font-black text-gray-900 tracking-tighter">100+ CITIES</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision & Mission -->
+        <section class="grid md:grid-cols-2 gap-10">
+            <div class="mission-card p-12 animate-up" style="animation-delay: 0.1s">
+                <i class="ri-eye-line text-5xl text-red-700 mb-8 block"></i>
+                <h3 class="text-3xl font-black mb-6">VISI KAMI</h3>
+                <p class="text-gray-500 font-bold leading-relaxed">
+                    Menjadi platform teknologi olahraga terintegrasi nomor satu di Asia Tenggara, memberdayakan komunitas melalui kemudahan akses dan inovasi digital yang berkelanjutan.
+                </p>
+            </div>
+            <div class="mission-card p-12 animate-up" style="animation-delay: 0.2s">
+                <i class="ri-rocket-2-line text-5xl text-red-700 mb-8 block"></i>
+                <h3 class="text-3xl font-black mb-6">MISI KAMI</h3>
+                <ul class="text-gray-500 font-bold space-y-4">
+                    <li class="flex items-start">
+                        <i class="ri-checkbox-circle-fill text-red-700 mt-1 mr-4"></i>
+                        Menyediakan sistem booking yang instan, transparan, dan terpercaya.
+                    </li>
+                    <li class="flex items-start">
+                        <i class="ri-checkbox-circle-fill text-red-700 mt-1 mr-4"></i>
+                        Merangkul dan memfasilitasi pertumbuhan komunitas olahraga lokal.
+                    </li>
+                    <li class="flex items-start">
+                        <i class="ri-checkbox-circle-fill text-red-700 mt-1 mr-4"></i>
+                        Menginspirasi masyarakat untuk hidup lebih sehat melalui aktivitas fisik.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="bg-gray-50 rounded-[60px] p-20 text-center animate-up">
+            <h2 class="text-4xl md:text-6xl font-black tracking-tighter mb-10">INGIN TAHU LEBIH LANJUT?</h2>
+            <p class="text-gray-400 font-bold mb-12 max-w-lg mx-auto leading-relaxed">Jangan ragu untuk menghubungi tim kami jika Anda memiliki pertanyaan atau ingin bekerja sama.</p>
+            <a href="/pages/ContactUs.html" class="inline-block bg-red-700 text-white font-black px-12 py-5 rounded-2xl text-xs uppercase tracking-widest hover:bg-red-800 transition-all shadow-xl shadow-red-700/20">
+                Hubungi Kami
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-32 pb-20 bg-white border-t border-gray-50">
+        <div class="max-w-screen-xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-20 mb-24">
+                <div class="col-span-2 space-y-10">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-red-700 p-2 rounded-xl">
+                            <img src="/assets/img/LOGO SUPER SPORT APP.png" class="h-6" alt="Logo">
+                        </div>
+                        <span class="text-2xl font-black tracking-tighter uppercase">Super Sport</span>
+                    </div>
+                    <p class="text-gray-400 font-bold max-w-sm leading-relaxed">Penyedia layanan olahraga digital terpercaya di Indonesia.</p>
+                </div>
+                <div>
+                    <h5 class="font-black text-[11px] uppercase tracking-widest mb-8 text-gray-900">Explore</h5>
+                    <ul class="space-y-4 font-bold text-sm text-gray-500">
+                        <li><a href="/index.html" class="hover:text-red-700">Beranda</a></li>
+                        <li><a href="/pages/PageSewaLapangan.html" class="hover:text-red-700">Booking</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-black text-[11px] uppercase tracking-widest mb-8 text-gray-900">Support</h5>
+                    <ul class="space-y-4 font-bold text-sm text-gray-500">
+                        <li><a href="/pages/ContactUs.html" class="hover:text-red-700">Kontak</a></li>
+                        <li><a href="/pages/Privacy&Policy.html" class="hover:text-red-700">Privasi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-10 border-t border-gray-50 text-[10px] font-black text-gray-300 text-center uppercase tracking-widest">
+                © 2025 SUPER SPORT INDONESIA. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+            const profileImg = localStorage.getItem("profileImage") || "/assets/img/profile z.jpg";
+
+            if (isLoggedIn === "true") {
+                $("#login-btn").hide();
+                $("#profile-menu").removeClass("hidden");
+                $("#profile-img").attr("src", profileImg);
+            }
+
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 30) {
+                    $("#header").addClass("py-3 shadow-sm").removeClass("py-5");
+                } else {
+                    $("#header").addClass("py-5").removeClass("py-3 shadow-sm");
+                }
+            });
+
+            $("#hamburger").click(() => $("#mobile-menu").toggleClass("active"));
+            $("#profile-icon").click((e) => {
+                e.stopPropagation();
+                $("#user-dropdown").toggleClass("hidden");
+            });
+            $(document).click(() => $("#user-dropdown").addClass("hidden"));
+            
+            $("#logout-btn").click(() => {
+                localStorage.removeItem("isLoggedIn");
+                window.location.href = "/index.html";
+            });
+        });
+    </script>
+</body>
+</html>
